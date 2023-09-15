@@ -11,7 +11,7 @@ ion-content {
 
 
 .login-section {
-    height: 65vh;
+    height: 67.5vh;
     width: 80%;
     max-width: 500px;
 
@@ -100,6 +100,13 @@ ion-content {
             --color: rgb(255, 255, 255);
             font-weight: bold;
             width: 100%;
+        }
+        .login{
+            --border-color: #c5c5c5;
+            --color: rgb(255, 255, 255);
+            font-weight: bold;
+            width: 100%;
+            margin-top: 1rem
         }
     }
 }

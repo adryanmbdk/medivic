@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-tela-cadastro',
@@ -21,7 +22,7 @@ export class TelaCadastroPage implements OnInit {
   id!:string;
   formGroup: FormGroup;
 
-  constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder) {
+  constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
     this.usuario = new Usuario();
 
     this.formGroup = this.formBuilder.group(
@@ -41,11 +42,31 @@ export class TelaCadastroPage implements OnInit {
   ngOnInit() {
   }
 
-  async cadastro() {
-    this.nome = this.formGroup.value.nome;
-    this.email = this.formGroup.value.email;
-    this.senha = this.formGroup.value.senha;
+  async cadastrar() {
+    let email = this.formGroup.value.email;
+    let nome = this.formGroup.value.nome;
+    let senha = this.formGroup.value.senha;
 
+    this.usuario.email = email;
+    this.usuario.nome = nome;
+    this.usuario.senha = senha;
+
+    this.usuarioService.verificarEmail(email).then((json) => {
+      let valor = <number>(json);;
+      if (valor > 0) {
+        this.exibirMensagem('Esse email ja existe')
+      } else {
+        this.usuarioService.salvar(this.usuario).then((json) =>{
+          if(json === false){
+            this.exibirMensagem('Não foi possivel criar')
+          }else{
+            this.exibirMensagem('Usuario cadastrado');
+             this.navController.navigateBack('/tela-inicial');
+          }
+        })
+      }
+    })
+    
   }
 
 

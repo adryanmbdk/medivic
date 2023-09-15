@@ -1,5 +1,5 @@
 #GET
-GET http://localhost:8087/api/v1/usuario/
+GET http://localhost:8087/api/v1/usuario
 Content-Type: application/json
 ###
 
@@ -8,9 +8,9 @@ POST http://localhost:8087/api/v1/usuario
 Content-Type: application/json
 
 {   
-    "nome":"Gabriel",
-    "senha":"123",
-    "email":"gab@gmail.com"
+    "nome":"Catalunha",
+    "senha":"321",
+    "email":"cacau@gmail.com"
 }
 ###
 
@@ -20,12 +20,12 @@ Content-Type: application/json
 
 {
     "idUsuario":2,
-    "nome":"gui",
-    "senha":"050.189.540-00",
-    "email":"gui@gmail.com"
+    "nome":"Cataluinha",
+    "senha":"321",
+    "email":"cacau@gmail.com"
 }
 ###
 
 #DELETE
-DELETE http://localhost:8087/api/v1/usuario/1
+DELETE http://localhost:8087/api/v1/usuario/3
 Content-Type: application/json

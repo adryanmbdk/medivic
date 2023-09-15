@@ -19,6 +19,18 @@ const routes: Routes = [
     path: 'tela-cadastro',
     loadChildren: () => import('./pages/tela-cadastro/tela-cadastro.module').then( m => m.TelaCadastroPageModule)
   },
+  {
+    path: 'menu',
+    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'remedios',
+    loadChildren: () => import('./pages/remedios/remedios.module').then( m => m.RemediosPageModule)
+  },
+  {
+    path: 'cadastro-remedio',
+    loadChildren: () => import('./pages/cadastro-remedio/cadastro-remedio.module').then( m => m.CadastroRemedioPageModule)
+  },
 ];
 
 @NgModule({

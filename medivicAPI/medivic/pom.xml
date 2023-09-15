@@ -15,7 +15,7 @@
 	<description>Projeto Prático - Medivic</description>
 	<properties>
 		<java.version>17</java.version>
-		<jdbi.version>3.41.1</jdbi.version>
+		<jdbi.version>3.34.0</jdbi.version>
 	</properties>
 	<dependencies>
 		<dependency>

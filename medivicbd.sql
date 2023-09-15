@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS remedio (
   dtInicio VARCHAR(20) NOT NULL,
   dtFim VARCHAR(20) NOT NULL,
   horarioInicio VARCHAR(10) NOT NULL,
-  PRIMARY KEY (idRemedio),
-  CONSTRAINT FK_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+  PRIMARY KEY (idRemedio)
+  #CONSTRAINT FK_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
   );
   
   CREATE TABLE IF NOT EXISTS horario (
@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS remedio (
   data VARCHAR(10) NOT NULL,
   hora VARCHAR(10) NOT NULL,
   idRemedio INT NOT NULL,
-  PRIMARY KEY (idHorario),
-  CONSTRAINT FK_idRemedio FOREIGN KEY (idRemedio) REFERENCES remedio(idRemedio)
+  PRIMARY KEY (idHorario)
+  #CONSTRAINT FK_idRemedio FOREIGN KEY (idRemedio) REFERENCES remedio(idRemedio)
   );
   
   CREATE TABLE IF NOT EXISTS usuarioAdmin (

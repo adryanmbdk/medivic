@@ -61,7 +61,7 @@ public class UsuarioService {
         usuarioDao.update(usuario);
     }
     
-    public void excluir(int id){
+    public void deletar(int id){
         usuarioDao.delete(id);
     }
     

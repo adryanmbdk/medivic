@@ -11,34 +11,31 @@
     <div class="heading ion-padding">
       <h1>Cadastro</h1>
     </div>
-    <!-- <form [formGroup]="formGroup" (ngSubmit)="login()"> -->
-    <form (ngSubmit)="cadastro()" class="login-form ion-padding">
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()" class="login-form ion-padding">
       <div class="form-input">
         <ion-icon name="person-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">Nome</ion-label>
-          <ion-input clearInput type="text" name="nome"></ion-input>
-          <!-- <ion-input clearInput type="text" formControlName="nome" name="nome"></ion-input> -->
+         <ion-input clearInput type="text" formControlName="nome" name="nome"></ion-input> 
         </ion-item>
       </div>
       <div class="form-input">
         <ion-icon name="mail-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input clearInput type="text" name="email"></ion-input>
-          <!-- <ion-input clearInput type="text" formControlName="email" name="email"></ion-input> -->
+          <ion-input clearInput type="text" formControlName="email" name="email"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
         <ion-icon name="lock-closed-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
-          <ion-input clearInput type="password" name="senha"></ion-input>
-          <!-- <ion-input clearInput type="password" formControlName="senha" name="senha"></ion-input> -->
+          <ion-input clearInput type="password" formControlName="senha" name="senha"></ion-input>
         </ion-item>
       </div>
       <div class="action-button ion-padding">
-        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Cadastrar</ion-button>
+        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
+        <ion-button class="login" fill="outline" size="large" routerLink="/tela-login" expand="block">Login</ion-button>
       </div>
     </form>
   </div>

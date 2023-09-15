@@ -12,7 +12,7 @@ export class UsuarioService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   }
 
-  url: string = 'http://localhost:8087/api/v1/usuario/';
+  url: string = 'http://localhost:8087/api/v1/usuario';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -32,6 +32,12 @@ export class UsuarioService {
   async listar(){
     return await this.httpClient.get(this.url).toPromise();
   }
+
+  async verificarEmail(email:string){
+    let urlAuxiliar = this.url + "/" + email + "/exists";
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
 
   async verificarLogin(email:string, senha: string){
     let urlAuxiliar = this.url + "/" + email + "/" + senha + "/authenticate";
