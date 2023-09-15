@@ -13,8 +13,8 @@ import { TelaCadastroPage } from './tela-cadastro.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TelaCadastroPageRoutingModule
+    TelaCadastroPageRoutingModule,
+    TelaCadastroPage
   ],
-  declarations: [TelaCadastroPage]
 })
 export class TelaCadastroPageModule {}

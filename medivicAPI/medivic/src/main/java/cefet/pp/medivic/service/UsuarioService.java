@@ -43,6 +43,10 @@ public class UsuarioService {
         
         return usuarioList;
     }
+
+    public Usuario getUserByEmail(String email) {
+        return usuarioDao.getUserByEmail(email);
+    }
     
     public Usuario consultarPorId(int id){
         Usuario usuario = usuarioDao.get(id);

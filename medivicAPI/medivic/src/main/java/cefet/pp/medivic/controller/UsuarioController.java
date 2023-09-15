@@ -50,6 +50,26 @@ public class UsuarioController {
         usuarioService.alterar(usuario);
         return usuario;
     }
+
+    @GetMapping("/email/{email}/exists")
+    public int emailExists(@PathVariable("email") String email) {
+        Usuario usuario = usuarioService.getUserByEmail(email);
+
+        if (usuario != null && usuario.getEmail().equals(email)) {
+            return 200;
+        } else
+            return 404;
+    }
+
+    @GetMapping("/{email}/{senha}/authenticate")
+    public int authenticate(@PathVariable("email") String email, @PathVariable("senha") String senha) {
+        Usuario usuario = usuarioService.getUserByEmail(email);
+
+        if (usuario != null && usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
+            return 200;
+        } else
+            return 401;
+    }
     
     @DeleteMapping("/{idUsuario}")
     public Usuario deletar(@PathVariable("idUsuario") int idUsuario){
