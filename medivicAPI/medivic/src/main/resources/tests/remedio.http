@@ -1,0 +1,49 @@
+
+GET http://localhost:8087/api/v1/remedio/
+Content-Type: application/json
+###
+
+GET http://localhost:8087/api/v1/remedio/usuario/2
+Content-Type: application/json
+###
+
+#POST
+POST http://localhost:8087/api/v1/remedio
+Content-Type: application/json
+
+{   
+    "idUsuario":"3",
+    "nome":"cimegirpe",
+    "descricao":"remedio pra gripe",
+    "unidade":"comprimido",
+    "quantDias":4,
+    "intervalo":8,
+    "dosagem":"1",
+    "dtInicio":"10/09/2023",
+    "dtFim":"14/09/2023",
+    "horarioInicio":"duas horas"
+}
+###
+
+#PUT
+PUT http://localhost:8087/api/v1/remedio
+Content-Type: application/json
+
+{
+    "idRemedio":1,
+    "idUsuario":2,
+    "nome":"dipironaATUALIZADO",
+    "descricao":"remedio pra dor",
+    "unidade":"ml",
+    "quantDias":4,
+    "intervalo":8,
+    "dosagem":"50",
+    "dtInicio":"10/09/2023",
+    "dtFim":"14/09/2023",
+    "horarioInicio":"ml"
+}
+###
+
+#DELETE
+DELETE http://localhost:8087/api/v1/remedio/1
+Content-Type: application/json
