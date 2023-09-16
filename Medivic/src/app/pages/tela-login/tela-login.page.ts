@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../model/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-tela-login',
@@ -21,15 +22,16 @@ export class TelaLoginPage implements OnInit {
   id!:string;
   formGroup: FormGroup;
 
-  constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder) {
+  constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder) {
     this.usuario = new Usuario();
 
     this.formGroup = this.formBuilder.group(
       {
         'email': [this.usuario.email, Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.email
         ])],
-        'senha': [this.senha, Validators.compose([
+        'senha': [this.usuario.senha, Validators.compose([
           Validators.required
         ])],
       });
@@ -42,17 +44,16 @@ export class TelaLoginPage implements OnInit {
     this.email = this.formGroup.value.email;
     this.senha = this.formGroup.value.senha;
 
-    // await this.usuarioService.verificarLogin(this.email, this.senha).then((json) => {
-    //   this.usuario = <Usuario>(json);
-    // });
-
-    // if (this.usuario.id === undefined) {
-    //   this.exibirMensagem('Dados incorretos.');
-    // } else {
-    //   this.exibirMensagem('Login efetuado!');
-    //   this.usuarioService.setUser(this.usuario);
-    //   this.navController.navigateBack('/menu')
-    // }
+    await this.usuarioService.verificarLogin(this.email, this.senha).then((json) => {
+      if (<Usuario>(json) == null) {
+        this.exibirMensagem('Dados incorretos.');
+      } else {
+        let usuario = <Usuario>(json);
+        this.exibirMensagem('Login efetuado!');
+        this.usuarioService.setUser(usuario);
+        this.navController.navigateBack('/menu')
+      }
+    });
   }
 
 

@@ -43,5 +43,18 @@ export class UsuarioService {
     let urlAuxiliar = this.url + "/" + email + "/" + senha + "/authenticate";
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
+
+  setUser(usuario: Usuario) {
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+  }
+
+  getUser(){
+    let usuario = JSON.parse(localStorage.getItem('usuario') || '[]');
+    return usuario;
+  }
+
+  logout(){
+    localStorage.removeItem('usuario');
+  }
 }
  
