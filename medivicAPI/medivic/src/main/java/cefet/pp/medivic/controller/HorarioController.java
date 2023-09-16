@@ -4,6 +4,8 @@ import cefet.pp.medivic.model.Horario;
 import cefet.pp.medivic.service.HorarioService;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author dougl
- */
 @RestController
 @RequestMapping("/api/v1/horario")
+@CrossOrigin("*")
 public class HorarioController {
     
     private final HorarioService horarioService;

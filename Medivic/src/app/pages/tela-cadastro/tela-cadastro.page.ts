@@ -50,10 +50,10 @@ export class TelaCadastroPage implements OnInit {
     this.usuario.email = email;
     this.usuario.nome = nome;
     this.usuario.senha = senha;
-
+    //debugger
     this.usuarioService.verificarEmail(email).then((json) => {
       let valor = <number>(json);;
-      if (valor > 0) {
+      if (valor < 400) {
         this.exibirMensagem('Esse email ja existe')
       } else {
         this.usuarioService.salvar(this.usuario).then((json) =>{

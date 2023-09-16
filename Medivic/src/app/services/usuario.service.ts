@@ -34,7 +34,7 @@ export class UsuarioService {
   }
 
   async verificarEmail(email:string){
-    let urlAuxiliar = this.url + "/" + email + "/exists";
+    let urlAuxiliar = this.url + "/email/" + email + "/exists";
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 

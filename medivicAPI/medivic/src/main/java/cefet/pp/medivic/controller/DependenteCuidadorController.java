@@ -8,6 +8,8 @@ import cefet.pp.medivic.model.Usuario;
 import cefet.pp.medivic.model.DependenteCuidador;
 import cefet.pp.medivic.service.DependenteCuidadorService;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/dependente/{idDependente}/cuidador")
+@CrossOrigin("*")
 public class DependenteCuidadorController {
     
     private final DependenteCuidadorService dependenteCuidadorService;

@@ -4,6 +4,8 @@ import cefet.pp.medivic.model.Usuario;
 import cefet.pp.medivic.service.UsuarioService;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author dougl
- */
 @RestController
 @RequestMapping("/api/v1/usuario")
+@CrossOrigin("*")
 public class UsuarioController {
     
     private final UsuarioService usuarioService;
@@ -52,23 +51,23 @@ public class UsuarioController {
     }
 
     @GetMapping("/email/{email}/exists")
-    public boolean emailExists(@PathVariable("email") String email) {
+    public int emailExists(@PathVariable("email") String email) {
         Usuario usuario = usuarioService.getUserByEmail(email);
 
         if (usuario != null && usuario.getEmail().equals(email)) {
-            return true;
+            return 200;
         } else
-            return false;
+            return 404;
     }
 
     @GetMapping("/{email}/{senha}/authenticate")
-    public boolean authenticate(@PathVariable("email") String email, @PathVariable("senha") String senha) {
+    public int authenticate(@PathVariable("email") String email, @PathVariable("senha") String senha) {
         Usuario usuario = usuarioService.getUserByEmail(email);
 
         if (usuario != null && usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
-            return true;
+            return 200;
         } else
-            return false;
+            return 401;
     }
     
     @DeleteMapping("/{idUsuario}")
