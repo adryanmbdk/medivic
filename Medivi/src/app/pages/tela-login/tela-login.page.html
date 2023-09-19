@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tela-inicial"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>Login</h1>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form ion-padding">
+      <div class="form-input">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input clearInput type="email" formControlName="email" name="email"></ion-input> 
+        </ion-item>
+        <!-- <ion-icon name="person-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">ID de Usuário</ion-label>
+          <<ion-input clearInput type="text" formControlName="id" name="id"></ion-input> 
+        </ion-item> -->
+      </div>
+      <div class="form-input">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input clearInput type="password" formControlName="senha" name="senha"></ion-input>
+        </ion-item>
+      </div>
+      <div class="action-button ion-padding">
+        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
+        <p>Esqueci a senha</p>
+        <ion-button class="cadastro" expand="block" size="large" fill="outline"
+          routerLink="/tela-cadastro">Cadastro</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
