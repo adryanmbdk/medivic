@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'cadastro-remedio',
     loadChildren: () => import('./pages/cadastro-remedio/cadastro-remedio.module').then( m => m.CadastroRemedioPageModule)
   },
+  {
+    path: 'cadastro-remedio/:idRemedio',
+    loadChildren: () => import('./pages/cadastro-remedio/cadastro-remedio.module').then( m => m.CadastroRemedioPageModule)
+  },
 ];
 
 @NgModule({

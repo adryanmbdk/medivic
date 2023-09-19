@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot({
+      backButtonText: '' // Set an empty string to have no text next to the back icon
+    }),
     AppRoutingModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false // manter a máscara ao salvar 

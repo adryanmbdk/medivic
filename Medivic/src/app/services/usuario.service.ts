@@ -17,7 +17,7 @@ export class UsuarioService {
   constructor(private httpClient: HttpClient) { }
   
   async salvar(usuario: Usuario) {
-    if(usuario.id === 0){
+    if(usuario.idUsuario === 0){
       return await this.httpClient.post(this.url, JSON.stringify(usuario), this.httpHeaders).toPromise();
     }else{
       return await this.httpClient.put(this.url, JSON.stringify(usuario), this.httpHeaders).toPromise();
