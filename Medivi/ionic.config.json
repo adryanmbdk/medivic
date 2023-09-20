@@ -1,7 +1,0 @@
-{
-  "name": "Medivic",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

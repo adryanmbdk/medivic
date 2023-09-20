@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
-import { Remedio } from 'src/app/model/remedio';
-import { Usuario } from 'src/app/model/usuario';
-import { RemedioService } from 'src/app/services/remedio.service';
-
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Remedio } from '../../model/remedio';
+import { Usuario } from '../../model/usuario';
+import { UsuarioService } from '../../services/usuario.service';
+import { RemedioService } from '../../services/remedio.service';
 
 @Component({
   selector: 'app-cadastro-remedio',

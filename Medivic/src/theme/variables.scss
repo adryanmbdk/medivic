@@ -3,6 +3,13 @@
 
 /** Ionic CSS Variables **/
 :root {
+	--ion-color-gray: #878787;;
+	--ion-color-gray-rgb: 135,135,135;
+	--ion-color-gray-contrast: #000000;
+	--ion-color-gray-contrast-rgb: 0,0,0;
+	--ion-color-gray-shade: #777777;
+	--ion-color-gray-tint: #939393;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -83,6 +90,13 @@
    */
 
   body {
+    --ion-color-gray: #878787;;
+    --ion-color-gray-rgb: 135,135,135;
+    --ion-color-gray-contrast: #000000;
+    --ion-color-gray-contrast-rgb: 0,0,0;
+    --ion-color-gray-shade: #777777;
+    --ion-color-gray-tint: #939393;
+    
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;
@@ -233,4 +247,13 @@
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+.ion-color-gray{
+  --ion-color-base: var(--ion-color-gray) !important;
+  --ion-color-base-rgb: var(--ion-color-gray-rgb) !important;
+  --ion-color-contrast: var(--ion-color-gray-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-gray-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-gray-shade) !important;
+  --ion-color-tint: var(--ion-color-gray-tint) !important;
 }

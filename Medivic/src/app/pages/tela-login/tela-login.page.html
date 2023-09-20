@@ -13,7 +13,7 @@
     </div>
     <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form ion-padding">
       <div class="form-input">
-        <ion-icon name="mail-outline"></ion-icon>
+        <ion-icon class="lefticon" name="mail-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
           <ion-input clearInput type="email" formControlName="email" name="email"></ion-input> 
@@ -25,10 +25,11 @@
         </ion-item> -->
       </div>
       <div class="form-input">
-        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-icon class="lefticon" name="lock-closed-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
-          <ion-input clearInput type="password" formControlName="senha" name="senha"></ion-input>
+          <ion-input [type]="passwordType" formControlName="senha" name="senha"></ion-input>
+          <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'" [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
         </ion-item>
       </div>
       <div class="action-button ion-padding">

@@ -19,10 +19,10 @@ PUT http://localhost:8087/api/v1/usuario
 Content-Type: application/json
 
 {
-    "idUsuario":2,
-    "nome":"Cataluinha",
-    "senha":"321",
-    "email":"cacau@gmail.com"
+    "idUsuario": 6,
+    "nome": "douglas",
+    "senha": "123",
+    "email": "douglas@gmail.com"
 }
 ###
 

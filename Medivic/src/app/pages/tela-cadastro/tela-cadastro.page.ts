@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from '../../model/usuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-tela-cadastro',
@@ -21,6 +21,8 @@ export class TelaCadastroPage implements OnInit {
   email!: string;
   id!:string;
   formGroup: FormGroup;
+  passwordType: string = 'password';
+  passwordShow: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
     this.usuario = new Usuario();
@@ -78,5 +80,13 @@ export class TelaCadastroPage implements OnInit {
     });
     toast.present();
   }
-
+  public togglePassword(){
+    if(this.passwordShow){
+      this.passwordShow = false;
+      this.passwordType ='password';
+  } else {
+    this.passwordShow = true;
+    this.passwordType = 'text';
+  }
+}
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Remedio } from 'src/app/model/remedio';
-import { RemedioService } from 'src/app/services/remedio.service';
+import { Remedio } from '../../model/remedio';
 import { ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
-import { Usuario } from 'src/app/model/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from '../../model/usuario';
+import { UsuarioService } from '../../services/usuario.service';
+import { RemedioService } from '../../services/remedio.service';
 
 @Component({
   selector: 'app-remedios',
@@ -19,11 +19,11 @@ export class RemediosPage implements OnInit {
   remedio: Remedio;
   usuario: Usuario;
 
-  constructor(private usuarioService:UsuarioService, private toastController: ToastController, private navController: NavController, private alertController: AlertController, private remedioService: RemedioService, private loadingController: LoadingController) { 
+  constructor(private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController, private alertController: AlertController, private remedioService: RemedioService, private loadingController: LoadingController) {
     this.remedios = [];
 
     let usuario = this.usuarioService.getUser();
-    if(usuario.idUsuario === undefined) {
+    if (usuario.idUsuario === undefined) {
       this.exibirMensagem('Faça login primeiro')
       this.navController.navigateBack('/login');
     }
@@ -37,42 +37,43 @@ export class RemediosPage implements OnInit {
   ngOnInit() {
   }
 
-  async ionViewWillEnter(){
+  async ionViewWillEnter() {
     this.carregarLista();
-  }  
+  }
 
-  async carregarLista(){
+  async carregarLista() {
     this.exibirLoader();
-    
+
     let usuario = this.usuarioService.getUser()
-    
-    await this.remedioService.listar(usuario.idUsuario).then(async (json)=>{
-      
-      this.remedios = <Remedio[]> (json);
-      this.fecharLoader();
-  });
+    await
+      this.remedioService.listar(usuario.idUsuario)
+        .then((json) => {
+
+          this.remedios = <Remedio[]>(json);
+          this.fecharLoader();
+        });
   }
 
 
-  exibirLoader(){
+  exibirLoader() {
     this.loadingController.create({
       message: 'Carregando...'
-    }).then((res)=>{
+    }).then((res) => {
       res.present();
     })
   }
-  
 
-  fecharLoader(){
-    setTimeout(()=>{
-      this.loadingController.dismiss().then(()=>{
-      }).catch((erro)=>{
+
+  fecharLoader() {
+    setTimeout(() => {
+      this.loadingController.dismiss().then(() => {
+      }).catch((erro) => {
         console.log('Erro: ', erro)
       });
     }, 500);
   }
 
-  async excluir(remedio: Remedio){
+  async excluir(remedio: Remedio) {
     const alert = await this.alertController.create({
       header: 'Confirma a exclusão ?',
       message: remedio.nome,
@@ -83,13 +84,13 @@ export class RemediosPage implements OnInit {
           text: 'Confirmar',
           cssClass: 'danger',
           handler: () => {
-              this.remedioService.excluir(remedio.idRemedio).then(()=>{
-                this.exibirMensagem('Excluido com sucesso!!');
-                this.carregarLista();
-              }).catch(()=>{
-                this.exibirMensagem('Erro ao excluir.');
-              });
-            }
+            this.remedioService.excluir(remedio.idRemedio).then(() => {
+              this.exibirMensagem('Excluido com sucesso!!');
+              this.carregarLista();
+            }).catch(() => {
+              this.exibirMensagem('Erro ao excluir.');
+            });
+          }
         }
       ]
     });
@@ -102,6 +103,6 @@ export class RemediosPage implements OnInit {
       duration: 1500
     });
     toast.present();
-  }  
+  }
 
 }

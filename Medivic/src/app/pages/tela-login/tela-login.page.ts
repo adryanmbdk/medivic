@@ -5,7 +5,7 @@ import { NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../model/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-tela-login',
@@ -16,6 +16,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class TelaLoginPage implements OnInit {
 
+  passwordType: string = 'password';
+  passwordShow: boolean = false;
   usuario: Usuario;
   senha!: string;
   email!: string;
@@ -66,4 +68,13 @@ export class TelaLoginPage implements OnInit {
     toast.present();
   }
 
+  public togglePassword(){
+    if(this.passwordShow){
+      this.passwordShow = false;
+      this.passwordType ='password';
+  } else {
+    this.passwordShow = true;
+    this.passwordType = 'text';
+  }
+  }
 }
