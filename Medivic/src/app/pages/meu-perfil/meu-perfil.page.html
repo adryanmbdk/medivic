@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <h1>Meu Perfil</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form class="formulario" [formGroup]="formGroup" (ngSubmit)="salvar()">
+
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">E-mail</ion-label>
+        <ion-input type="text" readonly formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input [type]="passwordType" formControlName="senha"></ion-input>
+        <ion-icon clearInput [name]="passwordShow === true ? 'eye' : 'eye-off'"
+          [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
+      </ion-item>
+
+      <div class="action-button">
+        <ion-button type="submit" expand="block" class="botaosubmit" [disabled]="!formGroup.valid">Salvar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
