@@ -1,4 +1,10 @@
-
+ion-content{
+  --background: linear-gradient(-270deg,#864988, #694490, #7270e6 );
+  ion-label{
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+}
 
 ion-toolbar{
   --background: #131261;
@@ -7,34 +13,52 @@ ion-toolbar{
   }
 }
 
+.container{
+  
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    margin: auto;
+    
+
+    .form-control{
+      background-color: #131261;
+      color: whitesmoke;
+      margin-top: 0.5rem;
+      
+    }
+
+    .formulario{
+      background: rgba(33, 2, 82, 0.432);
+      height: 46.5rem;
+    }
+
+    .item{
+      --background: rgba(255, 255, 255, 0);
+      --border-style: none;
+    }
+
+    .action-button{
+      display: flex;
+      justify-content: center;
+    .botaosubmit{
+      margin-top: 0.8rem;
+      --background: rgb(92, 35, 141);
+      width: 50%;
+      font-weight: bold;
+    }
+  }
+}
+
 h1 {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   color: white;
-  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
 }
-//.container{
- //   margin-top: -4.1rem;
-//background-color: #D4D4F2;
-
-//display: flex;
-//flex-direction: column;
-// align-items: center;
- //justify-content: center;
- //gap: 3rem;
- //height: 100vh;
-
- //background: linear-gradient(-45deg,#864988, #694490, #5250cd );
- // background-size: 400% 400%;
-	//  animation: gradient 5s ease infinite;
-    
- // .butao{
- //   width: 7.7rem;
-  //  height: 3.7rem;
- //   margin-bottom: 1rem;
- //   margin-top: 51rem;
- //   margin-left: 17rem;
- // }
 
  .item-has-focus{
   --highlight-background: rgb(159, 73, 234);

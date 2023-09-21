@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,66 +8,56 @@
 </ion-header>
 
 <ion-content>
-
-  
-
-    <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+  <div class="container">
+    <form class="formulario" [formGroup]="formGroup" (ngSubmit)="salvar()">
       <ion-item>
         <ion-label position="stacked">Nome</ion-label>
-        <ion-input type="text" formControlName="nome"></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="nome">
       </ion-item>
-  
+
       <ion-item>
         <ion-label position="stacked">Descrição</ion-label>
-        <ion-input type="text" formControlName="descricao" ></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="descricao">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Unidade</ion-label>
-        <ion-input type="text" formControlName="unidade" ></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="unidade">
       </ion-item>
-  
+
       <ion-item>
         <ion-label position="stacked">Quantidade de Dias</ion-label>
-        <ion-input type="text" formControlName="quantDias" ></ion-input>
+        <input type="number" class="form-control border-0 shadow-none" formControlName="quantDias">
       </ion-item>
-  
+
       <ion-item>
         <ion-label position="stacked">Intervalo</ion-label>
-        <ion-input type="text" formControlName="intervalo" ></ion-input>
+        <input type="number" class="form-control border-0 shadow-none" formControlName="intervalo">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Dosagem</ion-label>
-        <ion-input type="text" formControlName="dosagem" ></ion-input>
+        <input type="number" class="form-control border-0 shadow-none" formControlName="dosagem">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Data de Inicio</ion-label>
-        <ion-input type="text" formControlName="dtInicio" ></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="dtInicio">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Data Fim</ion-label>
-        <ion-input type="text" formControlName="dtFim" ></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Horário de Inicio</ion-label>
-        <ion-input type="text" formControlName="horarioInicio" ></ion-input>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="horarioInicio">
       </ion-item>
-
-      <ion-button type="submit" expand="block" color="primary" [disabled]="!formGroup.valid" routerLink="/remedios">Confirmar</ion-button>
+      <div class="action-button">
+        <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"
+          routerLink="/remedios">Confirmar</ion-button>
+      </div>
     </form>
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 </ion-content>

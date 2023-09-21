@@ -13,25 +13,25 @@
     </div>
     <form [formGroup]="formGroup" (ngSubmit)="cadastrar()" class="login-form ion-padding">
       <div class="form-input">
-        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon name="person-outline" class="lefticon"></ion-icon>
         <ion-item>
           <ion-label position="floating">Nome</ion-label>
-         <ion-input clearInput type="text" formControlName="nome" name="nome"></ion-input> 
+         <ion-input clearInput type="text" formControlName="nome" name="nome" ></ion-input> 
         </ion-item>
       </div>
       <div class="form-input">
-        <ion-icon name="mail-outline"></ion-icon>
+        <ion-icon name="mail-outline" class="lefticon"></ion-icon>
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
           <ion-input clearInput type="email" formControlName="email" name="email"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
-        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-icon name="lock-closed-outline" class="lefticon"></ion-icon>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
           <ion-input [type]="passwordType" formControlName="senha"></ion-input>
-          <ion-icon clearInput [name]="passwordShow === true ? 'eye' : 'eye-off'" [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
+          <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'" [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
         </ion-item>
       </div>
       <div class="action-button ion-padding">
