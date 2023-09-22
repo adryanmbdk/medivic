@@ -42,17 +42,17 @@
 
       <ion-item>
         <ion-label position="stacked">Data de Inicio</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="dtInicio">
+        <input type="text" class="form-control border-0 shadow-none" formControlName="dtInicio" mask="00/00/0000">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Data Fim</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim">
+        <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim" mask="00/00/0000">
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Horário de Inicio</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="horarioInicio">
+        <input type="text" class="form-control border-0 shadow-none" formControlName="horarioInicio" mask="Hh:m0">
       </ion-item>
       <div class="action-button">
         <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"

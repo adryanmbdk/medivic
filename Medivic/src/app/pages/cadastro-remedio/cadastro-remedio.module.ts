@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CadastroRemedioPageRoutingModule } from './cadastro-remedio-routing.module';
 
 import { CadastroRemedioPage } from './cadastro-remedio.page';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { CadastroRemedioPage } from './cadastro-remedio.page';
     IonicModule,
     CadastroRemedioPageRoutingModule,
     ReactiveFormsModule,
+    NgxMaskModule.forChild()
   ],
   declarations: [CadastroRemedioPage]
 })
