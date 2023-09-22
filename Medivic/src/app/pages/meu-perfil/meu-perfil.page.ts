@@ -47,6 +47,7 @@ export class MeuPerfilPage implements OnInit {
 
     const alert = await this.alertController.create({
       header: 'Confirmar alterações?',
+      cssClass: 'meu-perfil-alert',
       buttons: [
         {
           text: 'Cancelar'

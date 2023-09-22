@@ -1,8 +1,10 @@
 ion-content {
     --background: linear-gradient(-270deg, #864988, #694490, #7270e6);
-    ion-item.item-has-focus > ion-label{
-        color: rgb(226, 131, 255)  !important;
-      }
+
+    ion-item.item-has-focus>ion-label {
+        color: rgb(226, 131, 255) !important;
+    }
+
     ion-label {
         font-size: 1.3rem;
         font-weight: 700;
@@ -45,11 +47,11 @@ ion-toolbar {
         --border-style: none;
     }
 
-    .passwordicon{
+    .passwordicon {
         position: absolute;
         top: 1rem;
         z-index: 2;
-        font-size:1.6rem;
+        font-size: 1.6rem;
         right: 0.75rem;
         color: whitesmoke;
     }
@@ -66,6 +68,13 @@ ion-toolbar {
         }
     }
 }
+  .meu-perfil-alert {
+    > div {
+      background: red !important; // if you don't use .md, .ios, .mp initially, you'd have to use !important here.
+      color: #fff;
+      margin-bottom: 10px;
+    }
+  }
 
 h1 {
     font-size: 1.5rem;
@@ -74,4 +83,3 @@ h1 {
     margin-bottom: 0px;
 
 }
-
