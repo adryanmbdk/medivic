@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Usuario } from '../../model/usuario';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meu-perfil',
@@ -16,7 +17,7 @@ export class MeuPerfilPage implements OnInit {
   formGroup: FormGroup;
   usuario: Usuario;
 
-  constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService, private loadingController: LoadingController) { 
+  constructor(private alertController: AlertController, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService, private loadingController: LoadingController) { 
     this.usuario = this.usuarioService.getUser();
     if(this.usuario.idUsuario === undefined) {
       this.exibirMensagem('Faça login primeiro')
@@ -38,20 +39,35 @@ export class MeuPerfilPage implements OnInit {
   async salvar() {
     let nome = this.formGroup.value.nome;
     let email = this.usuario.email;
-    let senha = this.usuario.senha;
-    
+    let senha = this.formGroup.value.senha;
+
     this.usuario.nome = nome;
     this.usuario.email = email;
     this.usuario.senha = senha;
-    this.usuarioService.salvar(this.usuario).then((json) => {
-      if(json === false){
-        this.exibirMensagem('Não foi possivel mudar o nome')
-      }else{
-        this.usuarioService.setUser(this.usuario);
-        this.exibirMensagem('Nome alterado com sucesso');
-         this.navController.navigateBack('/meu-perfil');
-      }
-    })
+
+    const alert = await this.alertController.create({
+      header: 'Confirmar alterações?',
+      buttons: [
+        {
+          text: 'Cancelar'
+        }, {
+          text: 'Confirmar',
+          cssClass: 'danger',
+          handler:() => {
+            this.usuarioService.salvar(this.usuario).then((json) => {
+              if(json === false){
+                this.exibirMensagem('Não foi possivel alterar os dados')
+              }else{
+                this.usuarioService.setUser(this.usuario);
+                this.exibirMensagem('Dados alterados com sucesso');
+              }
+            })
+          }
+        }
+      ]
+    }); 
+    await alert.present();
+
   }
 
   async exibirMensagem(texto: string) {

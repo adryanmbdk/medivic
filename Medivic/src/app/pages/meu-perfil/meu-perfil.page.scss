@@ -45,7 +45,14 @@ ion-toolbar {
         --border-style: none;
     }
 
-
+    .passwordicon{
+        position: absolute;
+        top: 1rem;
+        z-index: 2;
+        font-size:1.6rem;
+        right: 0.75rem;
+        color: whitesmoke;
+    }
 
     .action-button {
         display: flex;
