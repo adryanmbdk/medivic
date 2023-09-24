@@ -13,6 +13,8 @@
         <ion-item  class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>
           <ion-label class="fundo">
             <h2> {{remedio.nome}} </h2>
+            <h3>{{remedio.descricao}}</h3>
+            <p>{{remedio.dosagem}}{{remedio.unidade}}</p>
           </ion-label>
         </ion-item>
         <ion-item-options side="start">

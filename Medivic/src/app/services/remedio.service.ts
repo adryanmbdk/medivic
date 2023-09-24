@@ -49,4 +49,17 @@ export class RemedioService {
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
+
+
+
+  somarDatas(intervalo:number, hora:number){
+    let result = hora+intervalo;
+    if(result > 23){
+      result = (hora+intervalo) - 24;
+      return result.toString();
+    }else{
+    return result.toString();
+    }
+  }
+
 }

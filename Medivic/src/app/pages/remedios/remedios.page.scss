@@ -1,3 +1,8 @@
+ion-header ion-toolbar:first-of-type {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
 ion-toolbar{
   --background: #131261;
   ion-back-button{
@@ -30,10 +35,34 @@ ion-list{
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   color: white;
   margin-top: 0px;
   margin-bottom: 0px;
+  text-align: center;
+  margin-right: 10vw;
+}
+
+h2{
+  font-size: 1.6rem;
+  color: rgb(39 20 69);
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+h3{
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  color:white;
+  font-size: 1rem;
 }
 
 .butao {

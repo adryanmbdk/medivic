@@ -33,8 +33,9 @@ public class Remedio {
     protected int intervalo;
     protected String dosagem;
     protected String dtInicio;
-    protected String dtFim;
+    protected String horarioNovo;
     protected String horarioInicio;
+    protected String vezes;
 
     protected List<Horario> horarios;
 }

@@ -20,8 +20,9 @@ Content-Type: application/json
     "intervalo":8,
     "dosagem":"1",
     "dtInicio":"10/09/2023",
-    "dtFim":"14/09/2023",
-    "horarioInicio":"duas horas"
+    "horarioNovo":"14/09/2023",
+    "horarioInicio":"duas horas",
+    "vezes":"5"
 }
 ###
 

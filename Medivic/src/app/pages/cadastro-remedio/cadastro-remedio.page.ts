@@ -18,13 +18,13 @@ export class CadastroRemedioPage implements OnInit {
   formGroup: FormGroup;
   usuario: Usuario;
   location: any;
-  keys!: string[]; 
+  keys!: string[];
   horarios!: string[];
 
-  constructor( private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) { 
+  constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) {
 
     let usuario = this.usuarioService.getUser()
-    if(usuario.idUsuario === undefined) {
+    if (usuario.idUsuario === undefined) {
       this.exibirMensagem('Faça login primeiro')
       this.navController.navigateBack('/login');
     }
@@ -58,7 +58,7 @@ export class CadastroRemedioPage implements OnInit {
         'dtInicio': [this.remedio.dtInicio, Validators.compose([
           Validators.required
         ])],
-        // 'dtFim': [this.remedio.dtFim, Validators.compose([
+        // 'horarioNovo': [this.remedio.horarioNovo, Validators.compose([
         //   Validators.required
         // ])],
         'horarioInicio': [this.remedio.horarioInicio, Validators.compose([
@@ -79,19 +79,18 @@ export class CadastroRemedioPage implements OnInit {
         this.formGroup.get('intervalo')?.setValue(this.remedio.intervalo);
         this.formGroup.get('dosagem')?.setValue(this.remedio.dosagem);
         this.formGroup.get('dtInicio')?.setValue(this.remedio.dtInicio);
-        // this.formGroup.get('dtFim')?.setValue(this.remedio.dtFim);
         this.formGroup.get('horarioInicio')?.setValue(this.remedio.horarioInicio);
 
         this.remedio.idUsuario = this.usuario.idUsuario;
       });
-    }else{
+    } else {
       let usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
       this.remedio.idUsuario = usuario.idUsuario;
     }
   }
 
 
-   ngOnInit() {
+  ngOnInit() {
 
   }
 
@@ -102,22 +101,7 @@ export class CadastroRemedioPage implements OnInit {
     return true;
   }
 
-  // calcularQntDeVezes(){
-  //   let vezes = (this.formGroup.value.quantDias * 24) / this.formGroup.value.intervalo; 
-  //   vezes = Math.ceil(vezes);
-  //   console.log(vezes); 
-  //   return vezes;
-  // }
 
-  // somarDatas(intervalo:number, hora:number){
-  //   let result = hora+intervalo;
-  //   if(result > 23){
-  //     result = (hora+intervalo) - 24;
-  //     return result.toString();
-  //   }else{
-  //   return result.toString();
-  //   }
-  // }
 
   // calcularDatas(){
   //   this.horarios = [];
@@ -132,40 +116,123 @@ export class CadastroRemedioPage implements OnInit {
   // }
 
   salvar() {
-  
-    this.remedio.nome = this.formGroup.value.nome;
-    this.remedio.descricao = this.formGroup.value.descricao;
-    this.remedio.unidade = this.formGroup.value.unidade;
-    this.remedio.quantDias = this.formGroup.value.quantDias;
-    this.remedio.intervalo = this.formGroup.value.intervalo;
-    this.remedio.dosagem = this.formGroup.value.dosagem;
-    this.remedio.dtInicio = this.formGroup.value.dtInicio;
-    // this.remedio.dtFim = this.formGroup.value.dtFim;
-    this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
-
+    if (this.remedio.idRemedio === 0) {
+      this.remedio.nome = this.formGroup.value.nome;
+      this.remedio.descricao = this.formGroup.value.descricao;
+      this.remedio.unidade = this.formGroup.value.unidade;
+      this.remedio.quantDias = this.formGroup.value.quantDias;
+      this.remedio.intervalo = this.formGroup.value.intervalo;
+      this.remedio.dosagem = this.formGroup.value.dosagem;
+      this.remedio.dtInicio = this.formGroup.value.dtInicio;
+      this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+      this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
+      this.remedio.vezes = this.calcularQntDeVezes();
+      console.log("Vezes:" + this.remedio.vezes);
+      console.log("Remédio foi Cadastrado");
+    } else {
+      if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio && (this.remedio.dtInicio != this.formGroup.value.dtInicio
+        || this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias)) {
+        ////////////////////////////////////////////////////////
+        this.remedio.nome = this.formGroup.value.nome;
+        this.remedio.descricao = this.formGroup.value.descricao;
+        this.remedio.unidade = this.formGroup.value.unidade;
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        this.remedio.dosagem = this.formGroup.value.dosagem;
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+        this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
+        this.remedio.vezes = this.calcularQntDeVezes();
+        console.log("Vezes:" + this.remedio.vezes);
+        console.log("Foram feitas alterações no horario e em algum dos outros 3 campos de baixo");
+      }
+      else if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio && (this.remedio.nome != this.formGroup.value.nome || this.remedio.descricao != this.formGroup.value.descricao
+        || this.remedio.unidade != this.formGroup.value.unidade || this.remedio.dosagem != this.formGroup.value.dosagem)) {
+        ////////////////////////////////////////////////////////
+        this.remedio.nome = this.formGroup.value.nome;
+        this.remedio.descricao = this.formGroup.value.descricao;
+        this.remedio.unidade = this.formGroup.value.unidade;
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        this.remedio.dosagem = this.formGroup.value.dosagem;
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+        this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
+        console.log("Vezes:" + this.remedio.vezes);
+        console.log("Foram feitas alterações no horario e em algum dos outros 4 campos de cima");
+      }
+      else if (this.remedio.dtInicio != this.formGroup.value.dtInicio
+        || this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias) {
+        ////////////////////////////////////////////////////////
+        this.remedio.nome = this.formGroup.value.nome;
+        this.remedio.descricao = this.formGroup.value.descricao;
+        this.remedio.unidade = this.formGroup.value.unidade;
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        this.remedio.dosagem = this.formGroup.value.dosagem;
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+        this.remedio.vezes = this.calcularQntDeVezes();
+        console.log("Vezes:" + this.remedio.vezes);
+        console.log("Foram feitas alterações somente em algum dos 3 campos de baixo sem ser o horario");
+      }
+      else if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio) {
+        this.remedio.nome = this.formGroup.value.nome;
+        this.remedio.descricao = this.formGroup.value.descricao;
+        this.remedio.unidade = this.formGroup.value.unidade;
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        this.remedio.dosagem = this.formGroup.value.dosagem;
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+        this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
+        this.remedio.vezes = this.calcularQntDeVezes();
+        console.log("Vezes:" + this.remedio.vezes);
+        console.log("Foram feitas alterações somente no horario");
+      } else {
+        ////////////////////////////////////////////////////////
+        this.remedio.nome = this.formGroup.value.nome;
+        this.remedio.descricao = this.formGroup.value.descricao;
+        this.remedio.unidade = this.formGroup.value.unidade;
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        this.remedio.dosagem = this.formGroup.value.dosagem;
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
+        console.log("Vezes:" + this.remedio.vezes);
+        console.log("Não foram feitas alterações");
+      }
+    }
     // this.remedio.horarios = this.calcularDatas(); 
-    console.log(this.remedio.horarios);
+
 
     let usuario = this.usuarioService.getUser();
     this.remedio.idUsuario = usuario.idUsuario;
-        
-        this.remedioService.salvar(this.remedio)
-          .then((json) => {
-            
-            this.remedio = <Remedio>(json);
-            
-            if (this.remedio) {
-              this.exibirMensagem('Registro salvo com sucesso!');
-              this.navController.navigateBack('/remedios');
-            } else {
-              this.exibirMensagem('Erro ao salvar o registro!')
-            }
-          })
-          .catch((erro) => {
-            this.exibirMensagem('Erro ao salvar o registro! Erro: ' + erro['mensage']);
-          });
-          console.log(parseInt(this.formGroup.value.horarioInicio));
-          console.log(parseInt(this.formGroup.value.horarioInicio.split(":")[1]));
+
+    this.remedioService.salvar(this.remedio)
+      .then((json) => {
+
+        this.remedio = <Remedio>(json);
+
+        if (this.remedio) {
+          this.exibirMensagem('Registro salvo com sucesso!');
+          this.navController.navigateBack('/remedios');
+        } else {
+          this.exibirMensagem('Erro ao salvar o registro!')
+        }
+      })
+      .catch((erro) => {
+        this.exibirMensagem('Erro ao salvar o registro! Erro: ' + erro['mensage']);
+      });
+    console.log(parseInt(this.formGroup.value.horarioInicio));
+    console.log(parseInt(this.formGroup.value.horarioInicio.split(":")[1]));
+  }
+
+  calcularQntDeVezes() {
+    let vezes = (this.formGroup.value.quantDias * 24) / this.formGroup.value.intervalo;
+    vezes = Math.ceil(vezes);
+    console.log(vezes);
+    return vezes;
   }
 
   async exibirMensagem(texto: string) {

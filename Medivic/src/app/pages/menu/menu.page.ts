@@ -24,14 +24,18 @@ export class MenuPage implements OnInit {
       console.log("procurando por tarefa");
       this.verificarAlarmes();
     }, 10000);
-
-    let now = new Date().toISOString()  ;
-    console.log(now);
   }
 
   async verificarAlarmes() {  
     await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
       this.remedios = <Remedio[]> (json);
+      for(var i = 0; i < this.remedios.length; i++){
+        let horaNow = this.formatarDataAtual();
+        if(this.remedios[i].horarioNovo === horaNow){
+          audioPla
+          console.log(this.remedios[i].nome)
+        }
+      }
       console.log(this.remedios);
     });
   
@@ -49,6 +53,14 @@ export class MenuPage implements OnInit {
     //     this.remedioService.salvar(remedio);
     //   }
     // });
+  }
+
+  formatarDataAtual(){
+    let now = new Date();
+    let hora = now.getHours();
+    let minuto = now.getMinutes();
+    console.log(now);
+    return hora + ":" + minuto
   }
 
   async exibirMensagem(texto: string) {
