@@ -10,6 +10,7 @@ export class Remedio {
     dtInicio: string;
     dtFim: string;
     horarioInicio: string;
+    horarios: string[];
 
     constructor(){
         this.idRemedio = 0;
@@ -23,6 +24,6 @@ export class Remedio {
         this.dtInicio = "";
         this.dtFim = "";
         this.horarioInicio = "";
-
+        this.horarios = [];
     }
 }

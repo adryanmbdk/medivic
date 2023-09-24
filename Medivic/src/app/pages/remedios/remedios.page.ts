@@ -7,13 +7,14 @@ import { LoadingController } from '@ionic/angular';
 import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { RemedioService } from '../../services/remedio.service';
+import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-remedios',
   templateUrl: './remedios.page.html',
   styleUrls: ['./remedios.page.scss'],
 })
-export class RemediosPage implements OnInit {
+export class RemediosPage implements ViewWillEnter {
 
   remedios: Remedio[];
   remedio: Remedio;

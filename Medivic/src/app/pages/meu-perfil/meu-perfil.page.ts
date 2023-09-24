@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Usuario } from '../../model/usuario';
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 @Component({

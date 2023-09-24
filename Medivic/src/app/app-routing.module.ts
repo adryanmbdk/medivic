@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'meu-perfil',
     loadChildren: () => import('./pages/meu-perfil/meu-perfil.module').then( m => m.MeuPerfilPageModule)
   },
+  {
+    path: 'alarme',
+    loadChildren: () => import('./pages/alarme/alarme.module').then( m => m.AlarmePageModule)
+  },
 ];
 
 @NgModule({

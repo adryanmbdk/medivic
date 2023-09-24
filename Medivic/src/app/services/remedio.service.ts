@@ -22,14 +22,20 @@ export class RemedioService {
       return await this.httpClient.put(this.url, JSON.stringify(remedio), this.httpHeaders).toPromise();
     }
   }
+  
   async excluir(id: number){
     let urlAuxiliar = this.url + "/" + id;
     return await this.httpClient.delete(urlAuxiliar).toPromise();
   }
 
   async listar(idUsuario: number){
-    
     let urlAuxiliar = this.url + "/usuario" + "/"+ idUsuario;
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
+  async listarTodos(){
+    debugger
+    let urlAuxiliar = this.url + "/";
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 

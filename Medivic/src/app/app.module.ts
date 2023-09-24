@@ -4,16 +4,18 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import { NgxMaskModule} from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UsuarioService } from './services/usuario.service';
+import { RemedioService } from './services/remedio.service';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     IonicModule.forRoot({
       backButtonText: '' // Set an empty string to have no text next to the back icon
     }),
@@ -23,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
