@@ -27,30 +27,39 @@ export class MenuPage implements OnInit {
   }
 
   async verificarAlarmes() {  
+    let contador = 0;
     await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
       this.remedios = <Remedio[]> (json);
       this.remedios.forEach((remedio) => {
         let horaNow = this.formatarDataAtual();
+        console.log(remedio.nome);
         console.log("Horario de tocar: "+ remedio.horarioNovo + "\nHorario atual: "+ horaNow);
+
         if(remedio.horarioNovo === horaNow){
-          setInterval(() => {
-            let audio = new Audio('assets/beep.mp3');
-            console.log(remedio.nome);
-            audio.play();
-          }, 5000);
-          this.navController.navigateBack('/alarme');
+          contador++;
+          this.remedioService.addRemedio(remedio);
         }
       });
       console.log(this.remedios);
     });
+    if (contador > 0){
+      setInterval(() => {
+        let audio = new Audio('assets/beep.mp3');
+        audio.play();
+      }, 5000);
+      this.navController.navigateBack('/alarme')
+    }
   }
 
   formatarDataAtual(){
     let now = new Date();
     let hora = now.getHours();
     let minuto = now.getMinutes();
-
-    return hora + ":" + minuto;
+    if(hora < 10){
+      return "0" + hora + ":" + minuto;
+    }else{
+      return hora + ":" + minuto;
+    }
   }
 
   async exibirMensagem(texto: string) {

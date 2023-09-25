@@ -1,9 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Alarme</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class=container>
+    <div class="nomes">
+      <h1 class="titulo">Alarme</h1>
+          <ion-item  class="fundo" *ngFor="let remedio of remedios">
+              <h2> {{remedio.nome}} </h2>
+          </ion-item>
+    </div>
+    <div id="botoes">
+      <ion-button routerLink="/remedios" class="confirma" >
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
 
-<ion-content [fullscreen]="true">
-  
+      <ion-button routerLink="/remedios" class="adia" >
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

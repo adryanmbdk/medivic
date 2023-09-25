@@ -52,8 +52,9 @@
 
       <ion-item>
         <ion-label position="stacked">Horário de Inicio</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="horarioInicio" mask="Hh:m0">
+        <ion-input type="time" class="form-control border-0 shadow-none" formControlName="horarioInicio"></ion-input>
       </ion-item>
+
       <div class="action-button">
         <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"
           routerLink="/remedios">Confirmar</ion-button>

@@ -22,7 +22,6 @@ export class CadastroRemedioPage implements OnInit {
   horarios!: string[];
 
   constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) {
-
     let usuario = this.usuarioService.getUser()
     if (usuario.idUsuario === undefined) {
       this.exibirMensagem('Faça login primeiro')
@@ -61,7 +60,7 @@ export class CadastroRemedioPage implements OnInit {
         // 'horarioNovo': [this.remedio.horarioNovo, Validators.compose([
         //   Validators.required
         // ])],
-        'horarioInicio': [this.remedio.horarioInicio, Validators.compose([
+        'horarioInicio': ["", Validators.compose([
           Validators.required
         ])],
       }

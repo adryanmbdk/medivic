@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    height: 100vh;
+    max-width: 100vw;
+    background: #5B4CB7;
+
+    h1 {
+        color: white;
+        text-align: center;
+
+    }
+
+    ion-button {
+        width: 7rem;
+        height: 7rem;
+        --border-radius: 50%;
+    }
+
+    ion-icon {
+        font-size: 3rem;
+    }
+}
+
+.titulo{
+    margin-bottom: 7rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+#botoes {
+    display: flex;
+    gap: 4rem
+}
+
+.confirma {
+    --background: #131261;
+}
+
+.adia {
+    --background: #131261;;
+
+}

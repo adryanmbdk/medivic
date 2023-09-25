@@ -12,8 +12,11 @@ export class RemedioService {
   }
 
   url: string = 'http://localhost:8087/api/v1/remedio';
+  remedios: Remedio[];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+    this.remedios = [];
+  }
   async salvar(remedio: Remedio) {
    
     if(remedio.idRemedio === 0){
@@ -49,8 +52,17 @@ export class RemedioService {
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
+  addRemedio(remedio: Remedio){
+    this.remedios.push(remedio);
+  }
 
+  deleteRemedio(){
+    this.remedios = [];
+  }
 
+  getRemedio(){
+    return this.remedios;
+  }
 
   somarDatas(intervalo:number, hora:number){
     let result = hora+intervalo;
