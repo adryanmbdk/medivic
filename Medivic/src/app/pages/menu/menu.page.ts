@@ -29,13 +29,20 @@ export class MenuPage implements OnInit {
   async verificarAlarmes() {  
     await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
       this.remedios = <Remedio[]> (json);
-      for(var i = 0; i < this.remedios.length; i++){
+      this.remedios.forEach((remedio) => {
         let horaNow = this.formatarDataAtual();
-        if(this.remedios[i].horarioNovo === horaNow){
-          audioPla
-          console.log(this.remedios[i].nome)
+        console.log("Horario de tocar: "+ remedio.horarioNovo + "\nHorario atual: "+ horaNow);
+        if(remedio.horarioNovo === horaNow){
+          setInterval(() => {
+            let audio = new Audio('assets/beep.mp3');
+            console.log(remedio.nome);
+          
+            audio.play();
+           
+          }, 5000);
+          this.navController.navigateBack('/alarme');
         }
-      }
+      });
       console.log(this.remedios);
     });
   
@@ -48,7 +55,7 @@ export class MenuPage implements OnInit {
     //       let audio = new Audio('assets/louco-e-sonhador.mp3');
     //       console.log(remedio.descricao);
     //       audio.play();
-    //       this.navController.navigateBack('/alarme');
+    //      
     //     }, 7000);
     //     this.remedioService.salvar(remedio);
     //   }
@@ -59,7 +66,7 @@ export class MenuPage implements OnInit {
     let now = new Date();
     let hora = now.getHours();
     let minuto = now.getMinutes();
-    console.log(now);
+
     return hora + ":" + minuto
   }
 
