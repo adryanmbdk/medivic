@@ -36,30 +36,13 @@ export class MenuPage implements OnInit {
           setInterval(() => {
             let audio = new Audio('assets/beep.mp3');
             console.log(remedio.nome);
-          
             audio.play();
-           
           }, 5000);
           this.navController.navigateBack('/alarme');
         }
       });
       console.log(this.remedios);
     });
-  
-    // let dataAtual = new Date();
-    // let minutoAtual = dataAtual.getMinutes();
-    // this.remedios.forEach((remedio) => {
-    //   if ((remedio.dataAtual == minutoAtual) && (remedio.situacao == false)) {
-    //     remedio.situacao = true;
-    //     remedio.numero = setInterval(() => {
-    //       let audio = new Audio('assets/louco-e-sonhador.mp3');
-    //       console.log(remedio.descricao);
-    //       audio.play();
-    //      
-    //     }, 7000);
-    //     this.remedioService.salvar(remedio);
-    //   }
-    // });
   }
 
   formatarDataAtual(){
@@ -67,7 +50,7 @@ export class MenuPage implements OnInit {
     let hora = now.getHours();
     let minuto = now.getMinutes();
 
-    return hora + ":" + minuto
+    return hora + ":" + minuto;
   }
 
   async exibirMensagem(texto: string) {
