@@ -27,6 +27,7 @@ export class MenuPage implements OnInit {
   }
 
   async verificarAlarmes() {  
+    this.remedioService.deleteRemedio();
     let contador = 0;
     await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
       this.remedios = <Remedio[]> (json);
@@ -44,9 +45,9 @@ export class MenuPage implements OnInit {
     });
     if (contador > 0){
       setInterval(() => {
-        let audio = new Audio('assets/beep.mp3');
+        let audio = new Audio('assets/Osmium.ogg');
         audio.play();
-      }, 5000);
+      }, 2500);
       this.navController.navigateBack('/alarme')
     }
   }
@@ -55,8 +56,12 @@ export class MenuPage implements OnInit {
     let now = new Date();
     let hora = now.getHours();
     let minuto = now.getMinutes();
-    if(hora < 10){
+    if(hora < 10 && minuto > 10){
       return "0" + hora + ":" + minuto;
+    }else if (minuto < 10 && hora > 10){
+      return hora + ":0" + minuto;
+    }else if (hora < 10 && minuto < 10){
+      return "0" + hora + ":0" + minuto;
     }else{
       return hora + ":" + minuto;
     }
