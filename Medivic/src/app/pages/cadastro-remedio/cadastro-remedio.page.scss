@@ -5,6 +5,11 @@ ion-content{
   ion-item.item-has-focus>ion-label {
     color: rgb(255, 255, 255) !important;
 }
+
+ion-item.ion-invalid>ion-label {
+  color: rgb(255, 255, 255) !important;
+}
+
   ion-label{
     font-size: 1.3rem;
     font-weight: 700;
@@ -34,6 +39,14 @@ ion-toolbar{
     .horario{
       width: 5.5rem;
 
+    }
+
+    .horarios{
+      display: flex;
+      justify-content: space-evenly;
+      ion-label{
+        font-size: 1.3rem;
+      }
     }
 
     .form-control{

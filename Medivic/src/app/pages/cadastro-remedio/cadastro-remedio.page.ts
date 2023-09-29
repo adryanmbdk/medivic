@@ -20,6 +20,7 @@ export class CadastroRemedioPage implements OnInit {
   location: any;
   keys!: string[];
   horarios!: string[];
+  editando: boolean;
 
   constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) {
     let usuario = this.usuarioService.getUser()
@@ -30,7 +31,8 @@ export class CadastroRemedioPage implements OnInit {
 
     this.remedio = new Remedio();
     this.usuario = usuarioService.getUser();
-
+    this.editando = true;
+    console.log(this.remedio.horarioNovo + "ee");
     this.formGroup = this.formBuilder.group(
       {
         'nome': [this.remedio.nome, Validators.compose([
@@ -57,9 +59,7 @@ export class CadastroRemedioPage implements OnInit {
         'dtInicio': [this.remedio.dtInicio, Validators.compose([
           Validators.required
         ])],
-        // 'horarioNovo': [this.remedio.horarioNovo, Validators.compose([
-        //   Validators.required
-        // ])],
+        'horarioNovo': { value: this.remedio.horarioNovo, disabled: false },
         'horarioInicio': ["", Validators.compose([
           Validators.required
         ])],
@@ -78,6 +78,7 @@ export class CadastroRemedioPage implements OnInit {
         this.formGroup.get('intervalo')?.setValue(this.remedio.intervalo);
         this.formGroup.get('dosagem')?.setValue(this.remedio.dosagem);
         this.formGroup.get('dtInicio')?.setValue(this.remedio.dtInicio);
+        this.formGroup.get('horarioNovo')?.setValue(this.remedio.horarioNovo);
         this.formGroup.get('horarioInicio')?.setValue(this.remedio.horarioInicio);
 
         this.remedio.idUsuario = this.usuario.idUsuario;

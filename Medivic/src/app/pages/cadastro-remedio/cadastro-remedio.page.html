@@ -50,10 +50,19 @@
         <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim" mask="d0/M0/0000">
       </ion-item> -->
 
-      <ion-item>
-        <ion-label position="stacked">Horário de Inicio</ion-label>
-        <ion-input type="time" class="form-control horario border-0 shadow-none" formControlName="horarioInicio"></ion-input>
-      </ion-item>
+      <div class="horarios">
+        <ion-item>
+          <ion-label position="stacked">Horário Inicial</ion-label>
+          <ion-input type="time" class="form-control horario border-0 shadow-none"
+            formControlName="horarioInicio"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Próximo</ion-label>
+          <ion-input readOnly type="time" class="form-control horario border-0 shadow-none"
+            formControlName="horarioNovo"></ion-input>
+        </ion-item>
+      </div>
 
       <div class="action-button">
         <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"
