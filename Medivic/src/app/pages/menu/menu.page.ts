@@ -13,14 +13,16 @@ import { UsuarioService } from '../../services/usuario.service';
 export class MenuPage implements OnInit {
   remedios: Remedio[];
   usuario: Usuario;
+  numero: any;
 
   constructor(private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController,private remedioService: RemedioService) {
     this.remedios = [];
     this.usuario = this.usuarioService.getUser();
+    this.numero = 0;
   }
   
   ngOnInit() {
-    let numero = setInterval(() => {
+    this.numero = setInterval(() => {
       console.log("procurando por tarefa");
       this.verificarAlarmes();
     }, 10000);
@@ -44,11 +46,13 @@ export class MenuPage implements OnInit {
       console.log(this.remedios);
     });
     if (contador > 0){
-      setInterval(() => {
+        this.usuario.alarme = setInterval(() => {
         let audio = new Audio('assets/Osmium.ogg');
         audio.play();
-      }, 2500);
-      this.navController.navigateBack('/alarme')
+      }, 3000);
+      this.navController.navigateBack('/alarme');
+      clearTimeout(this.numero);
+      this.usuarioService.setUser(this.usuario);
     }
   }
 

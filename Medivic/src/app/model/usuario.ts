@@ -3,11 +3,13 @@ export class Usuario {
     nome: string;
     email:string;
     senha:string;
+    alarme:any;
 
     constructor(){
         this.idUsuario = 0;
         this.nome = "";
         this.email = "";
         this.senha = "";
+        this.alarme = 0;
     }
 }
