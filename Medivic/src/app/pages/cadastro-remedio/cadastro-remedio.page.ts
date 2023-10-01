@@ -17,10 +17,8 @@ export class CadastroRemedioPage implements OnInit {
   remedio: Remedio;
   formGroup: FormGroup;
   usuario: Usuario;
-  location: any;
-  keys!: string[];
   horarios!: string[];
-  editando: boolean;
+  criando!: boolean;
 
   constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) {
     let usuario = this.usuarioService.getUser()
@@ -31,8 +29,8 @@ export class CadastroRemedioPage implements OnInit {
 
     this.remedio = new Remedio();
     this.usuario = usuarioService.getUser();
-    this.editando = true;
-    console.log(this.remedio.horarioNovo + "ee");
+    
+    console.log(this.remedio.horarioNovo);
     this.formGroup = this.formBuilder.group(
       {
         'nome': [this.remedio.nome, Validators.compose([
@@ -91,14 +89,13 @@ export class CadastroRemedioPage implements OnInit {
 
 
   ngOnInit() {
-
-  }
-
-  verificaRemedio() {
-    if (this.remedio.idRemedio === 0) {
-      return false;
+    let id = this.activatedRoute.snapshot.params['idRemedio'];
+    console.log(id);
+    if (id === undefined) {
+      this.criando = true;
+    }else{
+      this.criando = false;
     }
-    return true;
   }
 
 

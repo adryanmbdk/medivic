@@ -25,7 +25,7 @@ export class MenuPage implements OnInit {
     this.numero = setInterval(() => {
       console.log("procurando por tarefa");
       this.verificarAlarmes();
-    }, 10000);
+    }, 5000);
   }
 
   async verificarAlarmes() {  

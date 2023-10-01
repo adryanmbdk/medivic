@@ -36,13 +36,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Intervalo (horas)</ion-label>
-        <input type="number" class="form-control border-0 shadow-none" formControlName="intervalo">
-      </ion-item>
-
-      <ion-item>
         <ion-label position="stacked">Data de Inicio</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="dtInicio" mask="d0/M0/0000">
+        <input type="date" class="form-control border-0 shadow-none" formControlName="dtInicio">
       </ion-item>
 
       <!-- <ion-item>
@@ -50,16 +45,21 @@
         <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim" mask="d0/M0/0000">
       </ion-item> -->
 
+      <ion-item>
+        <ion-label position="stacked">Intervalo (horas)</ion-label>
+        <input type="number" class="form-control border-0 shadow-none" formControlName="intervalo">
+      </ion-item>
+
       <div class="horarios">
         <ion-item>
           <ion-label position="stacked">Horário Inicial</ion-label>
-          <ion-input type="time" class="form-control horario border-0 shadow-none"
+          <ion-input type="time" class="form-control border-0 shadow-none"
             formControlName="horarioInicio"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item [hidden]="criando">
           <ion-label position="stacked">Próximo</ion-label>
-          <ion-input readOnly type="time" class="form-control horario border-0 shadow-none"
+          <ion-input readonly type="time" class="form-control border-0 shadow-none"
             formControlName="horarioNovo"></ion-input>
         </ion-item>
       </div>

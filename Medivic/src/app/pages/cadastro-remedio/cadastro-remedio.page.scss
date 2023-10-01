@@ -1,76 +1,81 @@
-ion-content{
-  --background: linear-gradient(-270deg,#864988, #694490, #7270e6 );
+ion-content {
+  --background: linear-gradient(-270deg, #864988, #694490, #7270e6);
 
-  
+
   ion-item.item-has-focus>ion-label {
     color: rgb(255, 255, 255) !important;
-}
+  }
 
-ion-item.ion-invalid>ion-label {
-  color: rgb(255, 255, 255) !important;
-}
+  ion-item.ion-invalid>ion-label {
+    color: rgb(255, 255, 255) !important;
+  }
 
-  ion-label{
+  ion-label {
     font-size: 1.3rem;
     font-weight: 700;
   }
 }
 
-ion-toolbar{
+ion-toolbar {
   --background: #131261;
-  ion-back-button{
-      --color: whitesmoke;
+
+  ion-back-button {
+    --color: whitesmoke;
   }
 }
 
-.container{
-  
-    right: 0;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    position: absolute;
-    margin: auto;
-    
-    .item-label-stacked .sc-ion-input-md-h{
-      --padding-start: 0.8rem;
-    }
+.container {
 
-    .horario{
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  margin: auto;
+
+  .item-label-stacked .sc-ion-input-md-h {
+    --padding-start: 0.8rem;
+  }
+
+  .horarios {
+    display: flex;
+    justify-content: space-evenly;
+    ion-item {
+      width: 10rem;
+    }
+    ion-label {
+      font-size: 1.3rem;
+      width: 10rem;
+      max-width: none;
+    }
+    ion-input {
       width: 5.5rem;
-
     }
+  }
 
-    .horarios{
-      display: flex;
-      justify-content: space-evenly;
-      ion-label{
-        font-size: 1.3rem;
-      }
-    }
+  .form-control {
+    background-color: #131261;
+    color: whitesmoke;
+    margin-top: 0.5rem;
+  }
 
-    .form-control{
-      background-color: #131261;
-      color: whitesmoke;
-      margin-top: 0.5rem;
-    }
+  .formulario {
+    background: rgba(33, 2, 82, 0.432);
+    height: 90vh;
+  }
 
-    .formulario{
-      background: rgba(33, 2, 82, 0.432);
-      height: 90vh;
-    }
+  .item {
+    --background: rgba(255, 255, 255, 0);
+    --border-style: none;
+  }
 
-    .item{
-      --background: rgba(255, 255, 255, 0);
-      --border-style: none;
-    }
+  .action-button {
+    display: flex;
+    justify-content: center;
 
-    .action-button{
-      display: flex;
-      justify-content: center;
-    .botaosubmit{
+    .botaosubmit {
       margin-top: 0.8rem;
-      --background: rgb(92, 35, 141);
+      --background: rgb(33, 11, 53);
       width: 50%;
       font-weight: bold;
     }
@@ -84,4 +89,3 @@ h1 {
   margin-bottom: 0px;
 
 }
-
