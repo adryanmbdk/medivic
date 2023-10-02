@@ -45,6 +45,18 @@ public class RemedioController {
         return ret;
     }
 
+    @GetMapping("emuso/usuario/{idUsuario}")
+    public List<Remedio> consultarRemediosEmUso(@PathVariable("idUsuario") int idUsuario) {
+        List<Remedio> ret = remedioService.consultarRemediosEmUso(idUsuario);
+        return ret;
+    }
+
+        @GetMapping("finalizados/usuario/{idUsuario}")
+    public List<Remedio> consultarRemediosFinalizados(@PathVariable("idUsuario") int idUsuario) {
+        List<Remedio> ret = remedioService.consultarRemediosFinalizados(idUsuario);
+        return ret;
+    }
+
     @PostMapping({ "", "/" })
     public Remedio inserir(@RequestBody Remedio remedio) {
         Remedio ret = remedioService.inserir(remedio);

@@ -14,6 +14,25 @@ ion-content{
   --background: linear-gradient(-90deg,#864988, #694490, #5250cd );
 }
 
+ion-tabs{
+  position: relative;
+  height: 4rem;
+  max-height: 4rem;
+}
+
+ion-tab-bar{
+  --background: #100f4f;
+}
+
+ion-tab-button{
+  font-size: 1.4rem;
+}
+
+.selected{
+  color:#e44ae9;
+  font-weight: 700;
+}
+
 .fundo{
   --background: rgba(255, 255, 255, 0.227);
   --border-style:none;

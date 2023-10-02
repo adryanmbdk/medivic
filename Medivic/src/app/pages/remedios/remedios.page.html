@@ -8,6 +8,19 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="remedios" (click)="emuso()" >
+        <h3 *ngIf="finalizados">Em uso</h3>
+        <h3 class="selected" *ngIf="!finalizados">Em uso</h3>
+      </ion-tab-button>
+      <ion-tab-button tab="finalizados" (click)="finalizado()" >
+        <h3 *ngIf="!finalizados">Finalizados</h3>
+        <h3 class="selected" *ngIf="finalizados">Finalizados</h3>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
   <ion-list class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
       <ion-item class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>
@@ -28,7 +41,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button class="butao" routerLink="/cadastro-remedio">

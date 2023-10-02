@@ -29,6 +29,7 @@ export class AlarmePage implements OnInit {
     for (let remedio of this.remedios) {
       remedio.dtNovo = this.calcularDtNovo(remedio.horarioNovo, remedio.intervalo);
       remedio.horarioNovo = this.calcularHorarioNovo(remedio.horarioNovo, remedio.intervalo);
+      remedio.vezes--;
       console.log(remedio.horarioNovo);
       console.log(remedio.dtNovo);
       this.remedioService.salvar(remedio)

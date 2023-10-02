@@ -15,7 +15,7 @@ import { ViewWillEnter } from '@ionic/angular';
   styleUrls: ['./remedios.page.scss'],
 })
 export class RemediosPage implements ViewWillEnter {
-
+  finalizados: boolean = false;
   remedios: Remedio[];
   remedio: Remedio;
   usuario: Usuario;
@@ -46,14 +46,26 @@ export class RemediosPage implements ViewWillEnter {
     this.exibirLoader();
 
     let usuario = this.usuarioService.getUser()
-    await
-      this.remedioService.listar(usuario.idUsuario)
+
+    if (!this.finalizados){
+      await
+      this.remedioService.listarEmUso(usuario.idUsuario)
         .then((json) => {
 
           this.remedios = <Remedio[]>(json);
           this.remedioService.dataFormatar(this.remedios);
           this.fecharLoader();
         });
+    } else {
+      await
+      this.remedioService.listarFinalizados(usuario.idUsuario)
+        .then((json) => {
+
+          this.remedios = <Remedio[]>(json);
+          this.remedioService.dataFormatar(this.remedios);
+          this.fecharLoader();
+        });
+    } 
   }
 
 
@@ -105,6 +117,17 @@ export class RemediosPage implements ViewWillEnter {
       duration: 1500
     });
     toast.present();
+  }
+
+  emuso(){
+    this.finalizados = false; 
+    this.carregarLista();
+    
+  }
+
+  finalizado(){
+    this.finalizados = true;
+    this.carregarLista();
   }
 
 }

@@ -63,6 +63,24 @@ public class RemedioService {
         return remedioList;
     }
 
+    public List<Remedio> consultarRemediosEmUso(int idUsuario) {
+        List<Remedio> remedioList = remedioDao.getEmUsoByUsuario(idUsuario);
+        for (Remedio remedio : remedioList) {
+            List<Horario> horarioList = horarioDao.getAllByRemedio(remedio.getIdRemedio());
+            remedio.setHorarios(horarioList);
+        }
+        return remedioList;
+    }
+
+    public List<Remedio> consultarRemediosFinalizados(int idUsuario) {
+        List<Remedio> remedioList = remedioDao.getFinalizadosByUsuario(idUsuario);
+        for (Remedio remedio : remedioList) {
+            List<Horario> horarioList = horarioDao.getAllByRemedio(remedio.getIdRemedio());
+            remedio.setHorarios(horarioList);
+        }
+        return remedioList;
+    }
+
     public void alterar(Remedio remedio) {
         remedioDao.update(remedio);
     }

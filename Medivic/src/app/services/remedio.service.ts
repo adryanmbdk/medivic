@@ -36,6 +36,16 @@ export class RemedioService {
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
+  async listarEmUso(idUsuario: number){
+    let urlAuxiliar = this.url + "/emuso/usuario" + "/"+ idUsuario;
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
+  async listarFinalizados(idUsuario: number){
+    let urlAuxiliar = this.url + "/finalizados/usuario" + "/"+ idUsuario;
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
   async listarTodos(){
     debugger
     let urlAuxiliar = this.url + "/";

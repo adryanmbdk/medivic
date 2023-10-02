@@ -48,6 +48,16 @@ public interface RemedioDao {
             " where idUsuario = :idUsuario;")
     List<Remedio> getAllByUsuario(@Bind("idUsuario") int idUsuario);
 
+    @SqlQuery("select * " +
+            " from remedio " +
+            " where vezes <> 0 and idUsuario = :idUsuario;")
+    List<Remedio> getEmUsoByUsuario(@Bind("idUsuario") int idUsuario);
+
+    @SqlQuery("select * " +
+            " from remedio " +
+            " where vezes = 0 and idUsuario = :idUsuario;")
+    List<Remedio> getFinalizadosByUsuario(@Bind("idUsuario") int idUsuario);
+
     @SqlUpdate("update remedio " +
             " set idUsuario = :idUsuario, " +
             "     nome = :nome, " +
@@ -65,6 +75,7 @@ public interface RemedioDao {
             " where idRemedio = :idRemedio;")
     int update(@BindBean Remedio remedio);
 
+    
     
     @SqlUpdate("delete " +
             " from remedio " +
