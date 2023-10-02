@@ -32,7 +32,8 @@ public class Remedio {
     protected int quantDias;
     protected int intervalo;
     protected String dosagem;
-    protected String dtInicio;
+    protected String dtInicio;  
+    protected String dtNovo;  
     protected String horarioNovo;
     protected String horarioInicio;
     protected String vezes;

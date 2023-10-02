@@ -51,6 +51,7 @@ export class RemediosPage implements ViewWillEnter {
         .then((json) => {
 
           this.remedios = <Remedio[]>(json);
+          this.remedioService.dataFormatar(this.remedios);
           this.fecharLoader();
         });
   }

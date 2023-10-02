@@ -74,4 +74,11 @@ export class RemedioService {
     }
   }
 
+  dataFormatar(remedios: Remedio[]){
+    for (let i = 0; i < remedios.length; i++) {
+      let dataSplit = remedios[i].dtNovo.split("-");
+      remedios[i].dtNovo = dataSplit[2] + "/" + dataSplit[1] + "/" + dataSplit[0];
+    }
+  }
+
 }

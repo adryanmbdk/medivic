@@ -21,8 +21,8 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 public interface RemedioDao {
     
     @GetGeneratedKeys
-    @SqlUpdate("insert into remedio (idUsuario, nome, descricao, unidade, quantDias, intervalo, dosagem, dtInicio, horarioNovo, horarioInicio, vezes)" + 
-    "values (:idUsuario, :nome, :descricao, :unidade, :quantDias, :intervalo, :dosagem, :dtInicio, :horarioNovo, :horarioInicio, :vezes)")
+    @SqlUpdate("insert into remedio (idUsuario, nome, descricao, unidade, quantDias, intervalo, dosagem, dtInicio, dtNovo, horarioNovo, horarioInicio, vezes)" + 
+    "values (:idUsuario, :nome, :descricao, :unidade, :quantDias, :intervalo, :dosagem, :dtInicio, :dtNovo, :horarioNovo, :horarioInicio, :vezes)")
     int insert(@BindBean Remedio remedio);
     
     @SqlQuery("select * " +
@@ -57,6 +57,7 @@ public interface RemedioDao {
             "     intervalo = :intervalo, " +
             "     dosagem = :dosagem, " +
             "     dtInicio = :dtInicio, " +
+            "     dtNovo = :dtNovo, " +
             "     horarioNovo = :horarioNovo, " +
             "     horarioInicio = :horarioInicio, " +
             "     vezes = :vezes " +

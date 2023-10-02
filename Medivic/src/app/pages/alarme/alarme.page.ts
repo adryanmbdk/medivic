@@ -27,7 +27,10 @@ export class AlarmePage implements OnInit {
 
   confirmar() {
     for (let remedio of this.remedios) {
+      remedio.dtNovo = this.calcularDtNovo(remedio.horarioNovo, remedio.intervalo);
       remedio.horarioNovo = this.calcularHorarioNovo(remedio.horarioNovo, remedio.intervalo);
+      console.log(remedio.horarioNovo);
+      console.log(remedio.dtNovo);
       this.remedioService.salvar(remedio)
         .then((json) => {
 
@@ -52,6 +55,8 @@ export class AlarmePage implements OnInit {
     for (let remedio of this.remedios) {
       let tempo = 1;
       remedio.horarioNovo = this.calcularAdiar(remedio.horarioNovo, tempo);
+      console.log(remedio.horarioNovo);
+      // remedio.dtNovo = this.
       this.remedioService.salvar(remedio)
         .then((json) => {
 
@@ -81,10 +86,11 @@ export class AlarmePage implements OnInit {
     let vintequatro = 0;
     if (aux > 23) {
       vintequatro = aux / 24;
-      vintequatro = Math.ceil(vintequatro) * 24;
+      vintequatro = Math.floor(vintequatro) * 24;
     }
+    console.log(vintequatro);
     let horarioNovo = aux - vintequatro;
-    if ((parseInt(novo.split(":")[0]) + intervalo) > 23) {
+    if (aux > 23) {
       if (horarioNovo < 10) {
         return ("0" + horarioNovo + ":" + novo.split(":")[1]);
       } else {
@@ -96,6 +102,22 @@ export class AlarmePage implements OnInit {
       } else {
         return (aux + ":" + novo.split(":")[1]);
       }
+    }
+  }
+
+  calcularDtNovo(novo: string, intervalo: number) {
+    let aux = parseInt(novo.split(":")[0]) + intervalo;
+    let aux2 = 0;
+    let date = new Date();
+    let mes = date.getMonth() + 1;
+    if (aux > 23) {
+      aux2 = aux / 24;
+      aux2 = Math.floor(aux2);
+      date.setDate(date.getDate() + aux2);
+      return date.toISOString().split("T")[0];
+    }
+    else {
+      return date.toISOString().split("T")[0];
     }
   }
 
@@ -115,7 +137,7 @@ export class AlarmePage implements OnInit {
     } else {
       if (minutoNovo < 10) {
         return (novo.split(":")[0] + ":0" + minutoNovo);
-      }else{
+      } else {
         return (novo.split(":")[0] + ":" + minutoNovo);
       }
     }

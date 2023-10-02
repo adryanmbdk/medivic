@@ -35,10 +35,14 @@ export class MenuPage implements OnInit {
       this.remedios = <Remedio[]> (json);
       this.remedios.forEach((remedio) => {
         let horaNow = this.formatarDataAtual();
+        let date = new Date();
+        let dataNow = date.toISOString().split("T")[0];
         console.log(remedio.nome);
         console.log("Horario de tocar: "+ remedio.horarioNovo + "\nHorario atual: "+ horaNow);
+        console.log("Dia de tocar: "+ remedio.dtNovo + "\nDia atual: "+ dataNow);
+        console.log("----------------------------------------------");
 
-        if(remedio.horarioNovo === horaNow){
+        if(remedio.horarioNovo === horaNow && dataNow === remedio.dtNovo){
           contador++;
           this.remedioService.addRemedio(remedio);
         }

@@ -57,6 +57,7 @@ export class CadastroRemedioPage implements OnInit {
         'dtInicio': [this.remedio.dtInicio, Validators.compose([
           Validators.required
         ])],
+        'dtNovo': { value: this.remedio.dtNovo, disabled: false },
         'horarioNovo': { value: this.remedio.horarioNovo, disabled: false },
         'horarioInicio': ["", Validators.compose([
           Validators.required
@@ -76,6 +77,7 @@ export class CadastroRemedioPage implements OnInit {
         this.formGroup.get('intervalo')?.setValue(this.remedio.intervalo);
         this.formGroup.get('dosagem')?.setValue(this.remedio.dosagem);
         this.formGroup.get('dtInicio')?.setValue(this.remedio.dtInicio);
+        this.formGroup.get('dtNovo')?.setValue(this.remedio.dtNovo);
         this.formGroup.get('horarioNovo')?.setValue(this.remedio.horarioNovo);
         this.formGroup.get('horarioInicio')?.setValue(this.remedio.horarioInicio);
 
@@ -90,7 +92,6 @@ export class CadastroRemedioPage implements OnInit {
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.params['idRemedio'];
-    console.log(id);
     if (id === undefined) {
       this.criando = true;
     }else{
@@ -121,84 +122,41 @@ export class CadastroRemedioPage implements OnInit {
       this.remedio.intervalo = this.formGroup.value.intervalo;
       this.remedio.dosagem = this.formGroup.value.dosagem;
       this.remedio.dtInicio = this.formGroup.value.dtInicio;
+      this.remedio.dtNovo = this.formGroup.value.dtInicio;
       this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
       this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
       this.remedio.vezes = this.calcularQntDeVezes();
       console.log("Vezes:" + this.remedio.vezes);
       console.log("Remédio foi Cadastrado");
     } else {
-      if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio && (this.remedio.dtInicio != this.formGroup.value.dtInicio
-        || this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias)) {
-        ////////////////////////////////////////////////////////
-        this.remedio.nome = this.formGroup.value.nome;
-        this.remedio.descricao = this.formGroup.value.descricao;
-        this.remedio.unidade = this.formGroup.value.unidade;
-        this.remedio.quantDias = this.formGroup.value.quantDias;
-        this.remedio.intervalo = this.formGroup.value.intervalo;
-        this.remedio.dosagem = this.formGroup.value.dosagem;
-        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+      if(this.remedio.horarioInicio != this.formGroup.value.horarioInicio) {
         this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
         this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
+        console.log("Mudança no horário")
+        console.log("Vezes:" + this.remedio.vezes);
+      }
+      if(this.remedio.dtInicio != this.formGroup.value.dtInicio) {
+        this.remedio.dtInicio = this.formGroup.value.dtInicio;
+        this.remedio.dtNovo = this.formGroup.value.dtInicio;
+        console.log("Mudança na data")
+        console.log("Vezes:" + this.remedio.vezes);
+      }
+      if(this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias){
+        this.remedio.quantDias = this.formGroup.value.quantDias;
+        this.remedio.intervalo = this.formGroup.value.intervalo;
+        console.log("Mudança no intervalo ou na quantidade de dias")
         this.remedio.vezes = this.calcularQntDeVezes();
         console.log("Vezes:" + this.remedio.vezes);
-        console.log("Foram feitas alterações no horario e em algum dos outros 3 campos de baixo");
       }
-      else if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio && (this.remedio.nome != this.formGroup.value.nome || this.remedio.descricao != this.formGroup.value.descricao
-        || this.remedio.unidade != this.formGroup.value.unidade || this.remedio.dosagem != this.formGroup.value.dosagem)) {
-        ////////////////////////////////////////////////////////
-        this.remedio.nome = this.formGroup.value.nome;
-        this.remedio.descricao = this.formGroup.value.descricao;
-        this.remedio.unidade = this.formGroup.value.unidade;
-        this.remedio.quantDias = this.formGroup.value.quantDias;
-        this.remedio.intervalo = this.formGroup.value.intervalo;
-        this.remedio.dosagem = this.formGroup.value.dosagem;
-        this.remedio.dtInicio = this.formGroup.value.dtInicio;
-        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
-        this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
-        console.log("Vezes:" + this.remedio.vezes);
-        console.log("Foram feitas alterações no horario e em algum dos outros 4 campos de cima");
-      }
-      else if (this.remedio.dtInicio != this.formGroup.value.dtInicio
-        || this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias) {
-        ////////////////////////////////////////////////////////
-        this.remedio.nome = this.formGroup.value.nome;
-        this.remedio.descricao = this.formGroup.value.descricao;
-        this.remedio.unidade = this.formGroup.value.unidade;
-        this.remedio.quantDias = this.formGroup.value.quantDias;
-        this.remedio.intervalo = this.formGroup.value.intervalo;
-        this.remedio.dosagem = this.formGroup.value.dosagem;
-        this.remedio.dtInicio = this.formGroup.value.dtInicio;
-        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
-        this.remedio.vezes = this.calcularQntDeVezes();
-        console.log("Vezes:" + this.remedio.vezes);
-        console.log("Foram feitas alterações somente em algum dos 3 campos de baixo sem ser o horario");
-      }
-      else if (this.remedio.horarioInicio != this.formGroup.value.horarioInicio) {
-        this.remedio.nome = this.formGroup.value.nome;
-        this.remedio.descricao = this.formGroup.value.descricao;
-        this.remedio.unidade = this.formGroup.value.unidade;
-        this.remedio.quantDias = this.formGroup.value.quantDias;
-        this.remedio.intervalo = this.formGroup.value.intervalo;
-        this.remedio.dosagem = this.formGroup.value.dosagem;
-        this.remedio.dtInicio = this.formGroup.value.dtInicio;
-        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
-        this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
-        this.remedio.vezes = this.calcularQntDeVezes();
-        console.log("Vezes:" + this.remedio.vezes);
-        console.log("Foram feitas alterações somente no horario");
-      } else {
-        ////////////////////////////////////////////////////////
-        this.remedio.nome = this.formGroup.value.nome;
-        this.remedio.descricao = this.formGroup.value.descricao;
-        this.remedio.unidade = this.formGroup.value.unidade;
-        this.remedio.quantDias = this.formGroup.value.quantDias;
-        this.remedio.intervalo = this.formGroup.value.intervalo;
-        this.remedio.dosagem = this.formGroup.value.dosagem;
-        this.remedio.dtInicio = this.formGroup.value.dtInicio;
-        this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
-        console.log("Vezes:" + this.remedio.vezes);
-        console.log("Não foram feitas alterações");
-      }
+      if(this.remedio.nome != this.formGroup.value.nome || this.remedio.descricao != this.formGroup.value.descricao || this.remedio.unidade != this.formGroup.value.unidade ||
+        this.remedio.dosagem != this.formGroup.value.dosagem){
+          this.remedio.nome = this.formGroup.value.nome;
+          this.remedio.descricao = this.formGroup.value.descricao;
+          this.remedio.unidade = this.formGroup.value.unidade;
+          this.remedio.dosagem = this.formGroup.value.dosagem;
+          console.log("Mudança no nome,dosagem,unidade,descricao")
+          console.log("Vezes:" + this.remedio.vezes);
+        }
     }
     // this.remedio.horarios = this.calcularDatas(); 
 
@@ -228,7 +186,6 @@ export class CadastroRemedioPage implements OnInit {
   calcularQntDeVezes() {
     let vezes = (this.formGroup.value.quantDias * 24) / this.formGroup.value.intervalo;
     vezes = Math.ceil(vezes);
-    console.log(vezes);
     return vezes;
   }
 

@@ -35,39 +35,46 @@
         <input type="number" class="form-control border-0 shadow-none" formControlName="quantDias">
       </ion-item>
 
-      <ion-item>
-        <ion-label position="stacked">Data de Inicio</ion-label>
-        <input type="date" class="form-control border-0 shadow-none" formControlName="dtInicio">
-      </ion-item>
+      <div class="iniciais">
+        <ion-item class="data">
+          <ion-label position="stacked">Data de Inicio</ion-label>
+          <input type="date" class="form-control border-0 shadow-none" formControlName="dtInicio">
+        </ion-item>
+
+        <ion-item class="horario">
+          <ion-label position="stacked">Horário Inicial</ion-label>
+          <ion-input type="time" class="form-control border-0 shadow-none" formControlName="horarioInicio"></ion-input>
+        </ion-item>
+      </div>
 
       <!-- <ion-item>
         <ion-label position="stacked">Data Fim</ion-label>
         <input type="text" class="form-control border-0 shadow-none" formControlName="dtFim" mask="d0/M0/0000">
       </ion-item> -->
 
-      <ion-item>
-        <ion-label position="stacked">Intervalo (horas)</ion-label>
-        <input type="number" class="form-control border-0 shadow-none" formControlName="intervalo">
-      </ion-item>
-
-      <div class="horarios">
-        <ion-item>
-          <ion-label position="stacked">Horário Inicial</ion-label>
-          <ion-input type="time" class="form-control border-0 shadow-none"
-            formControlName="horarioInicio"></ion-input>
+      <div [hidden]="criando" class="proximos">
+        <ion-item class="data">
+          <ion-label position="stacked">Próxima Data</ion-label>
+          <input readonly type="date" class="form-control border-0 shadow-none" formControlName="dtNovo">
         </ion-item>
 
-        <ion-item [hidden]="criando">
-          <ion-label position="stacked">Próximo</ion-label>
+        <ion-item class="horario">
+          <ion-label position="stacked">Próximo Horário</ion-label>
           <ion-input readonly type="time" class="form-control border-0 shadow-none"
             formControlName="horarioNovo"></ion-input>
         </ion-item>
       </div>
 
+      <ion-item>
+        <ion-label position="stacked">Intervalo (horas)</ion-label>
+        <input type="number" class="form-control border-0 shadow-none" formControlName="intervalo">
+      </ion-item>
+
       <div class="action-button">
         <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"
           routerLink="/remedios">Confirmar</ion-button>
       </div>
+
     </form>
   </div>
 </ion-content>

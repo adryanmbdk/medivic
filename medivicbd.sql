@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS remedio (
   intervalo INT NOT NULL,
   dosagem INT NOT NULL,
   dtInicio VARCHAR(20) NOT NULL,
+  dtNovo VARCHAR(20) NOT NULL,
   horarioNovo VARCHAR(20) NOT NULL,
   horarioInicio VARCHAR(20) NOT NULL,
   vezes INT NOT NULL,

@@ -37,19 +37,39 @@ ion-toolbar {
     --padding-start: 0.8rem;
   }
 
-  .horarios {
+  .iniciais {
     display: flex;
     justify-content: space-evenly;
-    ion-item {
-      width: 10rem;
+  }
+
+  .proximos {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .horario {
+    width: 10rem;
+    ion-input {
+      width: 5.5rem;
     }
+
+    ion-label {
+      font-size: 1.3rem;
+      width: 12rem;
+      max-width: none;
+    }
+  }
+
+  .data {
+    width: 10.5rem;
+    ion-input {
+      width: 7rem;
+    }
+
     ion-label {
       font-size: 1.3rem;
       width: 10rem;
       max-width: none;
-    }
-    ion-input {
-      width: 5.5rem;
     }
   }
 
@@ -62,6 +82,7 @@ ion-toolbar {
   .formulario {
     background: rgba(33, 2, 82, 0.432);
     height: 90vh;
+    max-height: 46.8rem;
   }
 
   .item {
