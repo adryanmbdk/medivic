@@ -147,7 +147,7 @@ export class AlarmePage implements OnInit {
   async exibirMensagem(texto: string) {
     const toast = await this.toastController.create({
       message: texto,
-      duration: 1500
+      duration: 3000
     });
     toast.present();
   }
