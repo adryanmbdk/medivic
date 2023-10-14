@@ -36,7 +36,10 @@ export class MenuPage implements OnInit {
       this.remedios.forEach((remedio) => {
         let horaNow = this.formatarDataAtual();
         let date = new Date();
+        //date.setDate(date.getDate()-1);
+        console.log(date);
         let dataNow = date.toISOString().split("T")[0];
+        console.log(dataNow);
         console.log(remedio.nome);
         console.log("Horario de tocar: "+ remedio.horarioNovo + "\nHorario atual: "+ horaNow);
         console.log("Dia de tocar: "+ remedio.dtNovo + "\nDia atual: "+ dataNow);
@@ -73,6 +76,13 @@ export class MenuPage implements OnInit {
     }else{
       return hora + ":" + minuto;
     }
+  }
+
+  sair(){
+    clearTimeout(this.numero);
+    this.usuarioService.logout();
+    this.navController.navigateBack('/tela-inicial');
+    this.exibirMensagem('Saindo...  ')
   }
 
   async exibirMensagem(texto: string) {

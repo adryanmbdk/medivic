@@ -114,10 +114,12 @@ export class AlarmePage implements OnInit {
     if (aux > 23) {
       aux2 = aux / 24;
       aux2 = Math.floor(aux2);
+      //date.setDate(date.getDate() + aux2 - 1);
       date.setDate(date.getDate() + aux2);
       return date.toISOString().split("T")[0];
     }
     else {
+//      date.setDate(date.getDate() - 1);
       return date.toISOString().split("T")[0];
     }
   }

@@ -27,5 +27,5 @@ Content-Type: application/json
 ###
 
 #DELETE
-DELETE http://localhost:8087/api/v1/usuario/3
+DELETE http://localhost:8087/api/v1/usuario/4
 Content-Type: application/json

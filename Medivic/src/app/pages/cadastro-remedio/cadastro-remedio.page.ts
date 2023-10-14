@@ -133,12 +133,14 @@ export class CadastroRemedioPage implements OnInit {
         this.remedio.horarioInicio = this.formGroup.value.horarioInicio;
         this.remedio.horarioNovo = this.formGroup.value.horarioInicio;
         console.log("Mudança no horário")
+        this.remedio.vezes = this.calcularQntDeVezes();
         console.log("Vezes:" + this.remedio.vezes);
       }
       if(this.remedio.dtInicio != this.formGroup.value.dtInicio) {
         this.remedio.dtInicio = this.formGroup.value.dtInicio;
         this.remedio.dtNovo = this.formGroup.value.dtInicio;
         console.log("Mudança na data")
+        this.remedio.vezes = this.calcularQntDeVezes();
         console.log("Vezes:" + this.remedio.vezes);
       }
       if(this.remedio.intervalo != this.formGroup.value.intervalo || this.remedio.quantDias != this.formGroup.value.quantDias){

@@ -29,7 +29,6 @@ export class RemediosPage implements ViewWillEnter {
       this.navController.navigateBack('/login');
     }
 
-    this.remedios = [];
     this.remedio = new Remedio()
     this.usuario = usuarioService.getUser();
 
