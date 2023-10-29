@@ -32,17 +32,17 @@ export class RemedioService {
   }
 
   async listar(idUsuario: number){
-    let urlAuxiliar = this.url + "/usuario" + "/"+ idUsuario;
+    let urlAuxiliar = this.url + "/usuario/"+ idUsuario;
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
   async listarEmUso(idUsuario: number){
-    let urlAuxiliar = this.url + "/emuso/usuario" + "/"+ idUsuario;
+    let urlAuxiliar = this.url + "/emuso/usuario/" + idUsuario;
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
   async listarFinalizados(idUsuario: number){
-    let urlAuxiliar = this.url + "/finalizados/usuario" + "/"+ idUsuario;
+    let urlAuxiliar = this.url + "/finalizados/usuario/" + idUsuario;
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     nome VARCHAR(60) NOT NULL,
     senha VARCHAR(20) NOT NULL,
     email VARCHAR(45) NOT NULL,
+    isCuidador INT NOT NULL,
     PRIMARY KEY (idUsuario)
 );
 

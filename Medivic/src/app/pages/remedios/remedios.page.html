@@ -20,7 +20,7 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-
+<!--  EM USO -->
   <ion-list *ngIf="!finalizados" class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
       <ion-item class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>
@@ -41,7 +41,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
+<!--  FINALIZADOS -->
   <ion-list *ngIf="finalizados" class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
       <ion-item class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>

@@ -13,7 +13,9 @@ import { RemedioService } from './services/remedio.service';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+      AppComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot({
