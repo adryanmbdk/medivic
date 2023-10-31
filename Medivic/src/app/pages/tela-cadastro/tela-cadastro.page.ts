@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Usuario } from '../../model/usuario';
@@ -9,7 +9,7 @@ import { UsuarioService } from '../../services/usuario.service';
 @Component({
   selector: 'app-tela-cadastro',
   templateUrl: './tela-cadastro.page.html',
-  styleUrls: ['../tela-login/tela-login.page.scss'],
+  styleUrls: ['../tela-cadastro/tela-cadastro.page.scss'],
   standalone: true,
   imports: [ReactiveFormsModule, IonicModule, CommonModule, FormsModule, RouterLink]
 })
@@ -18,11 +18,14 @@ export class TelaCadastroPage implements OnInit {
   usuario: Usuario;
   nome!:string;
   senha!: string;
+  confirmarSenha!: string;
   email!: string;
   id!:string;
   formGroup: FormGroup;
   passwordType: string = 'password';
   passwordShow: boolean = false;
+  confirmarPasswordType: string = 'password';
+  confirmarPasswordShow: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
     this.usuario = new Usuario();
@@ -37,6 +40,9 @@ export class TelaCadastroPage implements OnInit {
           Validators.required
         ])],
         'senha': [this.senha, Validators.compose([
+          Validators.required
+        ])],
+        'confirmarSenha': [this.confirmarSenha, Validators.compose([
           Validators.required
         ])],
       });
@@ -80,6 +86,7 @@ export class TelaCadastroPage implements OnInit {
     });
     toast.present();
   }
+
   public togglePassword(){
     if(this.passwordShow){
       this.passwordShow = false;
@@ -89,4 +96,37 @@ export class TelaCadastroPage implements OnInit {
     this.passwordType = 'text';
   }
 }
+
+public toggleConfirmarPassword(){
+  if(this.confirmarPasswordShow){
+    this.confirmarPasswordShow = false;
+    this.confirmarPasswordType ='password';
+} else {
+  this.confirmarPasswordShow = true;
+  this.confirmarPasswordType = 'text';
+}
+}
+
+verifyPasswords() {
+  let passwordVerify = this.formGroup.get('senha');
+  let confirmPasswordVerify = this.formGroup.get('confirmarSenha');
+  if (passwordVerify?.value === '' || confirmPasswordVerify?.value === '') {
+    return null;
+  }
+  if (passwordVerify && confirmPasswordVerify) {
+    let password = passwordVerify.value;
+    let confirmPassword = confirmPasswordVerify.value;
+
+    return password === confirmPassword ? null : true
+  }
+
+  return true;
+}
+
+isValid(): boolean {
+  const passwordsMatch = this.verifyPasswords();
+  return this.formGroup.valid && !passwordsMatch;
+}
+
+
 }

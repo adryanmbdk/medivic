@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'alarme',
     loadChildren: () => import('./pages/alarme/alarme.module').then( m => m.AlarmePageModule)
   },
+  {
+    path: 'tela-esqueci-a-senha',
+    loadChildren: () => import('./pages/tela-esqueci-a-senha/tela-esqueci-a-senha.module').then( m => m.TelaEsqueciASenhaPageModule)
+  },
 ];
 
 @NgModule({

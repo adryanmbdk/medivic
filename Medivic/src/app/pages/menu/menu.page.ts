@@ -5,6 +5,10 @@ import { RemedioService } from '../../services/remedio.service';
 import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
+interface SideNavToggle {
+  screenWidth:number;
+  collapsed:boolean;
+}
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',

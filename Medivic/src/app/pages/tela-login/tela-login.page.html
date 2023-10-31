@@ -16,7 +16,7 @@
         <ion-icon class="lefticon" name="mail-outline"></ion-icon>
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input clearInput type="email" formControlName="email" name="email"></ion-input> 
+          <ion-input clearInput type="email" formControlName="email" name="email"></ion-input>
         </ion-item>
         <!-- <ion-icon name="person-outline"></ion-icon>
         <ion-item>
@@ -29,12 +29,15 @@
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
           <ion-input [type]="passwordType" formControlName="senha" name="senha"></ion-input>
-          <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'" [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
+          <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'"
+            [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
         </ion-item>
       </div>
       <div class="action-button ion-padding">
         <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
-        <!-- <p>Esqueci a senha</p> -->
+        <div class='forgot'>
+          <a routerLink="/tela-esqueci-a-senha"><p>Esqueci a senha</p></a>
+        </div>
         <ion-button class="cadastro" expand="block" size="large" fill="outline"
           routerLink="/tela-cadastro">Cadastro</ion-button>
       </div>

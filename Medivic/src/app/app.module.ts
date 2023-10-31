@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from './services/usuario.service';
 import { RemedioService } from './services/remedio.service';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
