@@ -3,6 +3,7 @@ export class Usuario {
     nome: string;
     email:string;
     senha:string;
+    isDependente: string;
     alarme:any;
 
     constructor(){
@@ -11,5 +12,6 @@ export class Usuario {
         this.email = "";
         this.senha = "";
         this.alarme = 0;
+        this.isDependente = "";
     }
 }

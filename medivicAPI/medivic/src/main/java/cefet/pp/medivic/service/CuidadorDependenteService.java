@@ -39,7 +39,7 @@ public class CuidadorDependenteService {
         cuidadorDependenteDao.delete(idCuidador, idDependente);
     }
     
-    public void deleteAllByAluno(int idCuidador){
+    public void deleteAllByCuidador(int idCuidador){
         cuidadorDependenteDao.deleteAllByCuidador(idCuidador);
     }
 }

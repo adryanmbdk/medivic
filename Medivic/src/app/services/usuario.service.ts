@@ -13,6 +13,8 @@ export class UsuarioService {
   }
 
   url: string = 'http://localhost:8087/api/v1/usuario';
+  urlCuidador= (idCuidador: number) =>
+    `/api/v1/cuidador/${idCuidador}/dependente`;
 
   constructor(private httpClient: HttpClient) { }
   
@@ -44,6 +46,16 @@ export class UsuarioService {
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
   
+  async listarDependentes(idCuidador: number){
+    let urlAuxiliar = this.urlCuidador(idCuidador);
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
+  async deleteDependente(idCuidador: number, idDependente: number){
+    let urlAuxiliar = this.urlCuidador(idCuidador) + "/" + idDependente;
+    return await this.httpClient.delete(urlAuxiliar).toPromise();
+  }
+
   setUser(usuario: Usuario) {
     localStorage.setItem('usuario', JSON.stringify(usuario));
   }

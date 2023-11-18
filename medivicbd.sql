@@ -6,9 +6,9 @@ USE medivic;
 CREATE TABLE IF NOT EXISTS usuario (
     idUsuario INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(60) NOT NULL,
-    senha VARCHAR(20) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    isCuidador INT NOT NULL,
+    senha VARCHAR(20),
+    email VARCHAR(45),
+    isDependente VARCHAR(3) NOT NULL,
     PRIMARY KEY (idUsuario)
 );
 

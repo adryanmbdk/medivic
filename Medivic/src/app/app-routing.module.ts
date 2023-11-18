@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'tela-esqueci-a-senha',
     loadChildren: () => import('./pages/tela-esqueci-a-senha/tela-esqueci-a-senha.module').then( m => m.TelaEsqueciASenhaPageModule)
   },
+  {
+    path: 'dependentes',
+    loadChildren: () => import('./pages/dependentes/dependentes.module').then( m => m.DependentesPageModule)
+  },
+  {
+    path: 'cadastro-dependente',
+    loadChildren: () => import('./pages/cadastro-dependente/cadastro-dependente.module').then( m => m.CadastroDependentePageModule)
+  },
 ];
 
 @NgModule({
