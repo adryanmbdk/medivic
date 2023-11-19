@@ -9,10 +9,19 @@
 
 <ion-content>
 
+  <!-- <div class="cadastrar">
+    <form class="formulario" [formGroup]="formGroup" (ngSubmit)="salvar()">
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <input type="text" class="form-control border-0 shadow-none" formControlName="nome">
+      </ion-item>
+    </form>
+  </div> -->
+
   <ion-list class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let dependente of dependentes">
       <ion-item class="fundo" detail>
-        <ion-label class="fundo">
+        <ion-label class="fundolabel">
           <div class="linha1">
             <h2> {{dependente.nome}} </h2>
           </div>
@@ -25,7 +34,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="butao" routerLink="/cadastro-dependente">
+    <ion-fab-button class="butao" (click)="showInput()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

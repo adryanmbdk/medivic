@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../model/usuario';
+import { UsuarioAdmin } from '../model/usuario-admin';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UsuarioService {
 
   url: string = 'http://localhost:8087/api/v1/usuario';
   urlCuidador= (idCuidador: number) =>
-    `/api/v1/cuidador/${idCuidador}/dependente`;
+    `http://localhost:8087/api/v1/cuidador/${idCuidador}/dependente`;
 
   constructor(private httpClient: HttpClient) { }
   
@@ -54,6 +55,13 @@ export class UsuarioService {
   async deleteDependente(idCuidador: number, idDependente: number){
     let urlAuxiliar = this.urlCuidador(idCuidador) + "/" + idDependente;
     return await this.httpClient.delete(urlAuxiliar).toPromise();
+  }
+
+  async saveRelationship(usuarioAdmin: UsuarioAdmin) {
+      return await this.httpClient.post(this.urlCuidador(usuarioAdmin.idCuidador), 
+      {idCuidador: usuarioAdmin.idCuidador, idUsuario: usuarioAdmin.idDependente, tipo: usuarioAdmin.tipo, administrarRemedio: 
+        usuarioAdmin.administrarRemedio, cadastrarRemedio: usuarioAdmin.cadastrarRemedio}, 
+      this.httpHeaders).toPromise();
   }
 
   setUser(usuario: Usuario) {

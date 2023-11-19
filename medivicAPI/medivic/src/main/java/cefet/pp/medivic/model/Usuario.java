@@ -26,5 +26,6 @@ public class Usuario {
     protected String email;
     protected String isDependente;
     
+    protected List<Usuario> usuarios;
     protected List<Remedio> remedios;
 }

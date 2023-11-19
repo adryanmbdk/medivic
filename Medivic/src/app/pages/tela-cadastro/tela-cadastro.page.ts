@@ -59,7 +59,7 @@ export class TelaCadastroPage implements OnInit {
     this.usuario.email = email;
     this.usuario.nome = nome;
     this.usuario.senha = senha;
-    this.usuario.isDependente = "nao";
+    this.usuario.isDependente = "n";
     //debugger
     this.usuarioService.verificarEmail(email).then((json) => {
       if (<any>(json) == true) {

@@ -4,6 +4,7 @@
  */
 package cefet.pp.medivic.dao;
 
+// import cefet.pp.medivic.model.CuidadorDependente;
 import cefet.pp.medivic.model.DependenteCuidador;
 import cefet.pp.medivic.model.Usuario;
 
@@ -14,10 +15,10 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-@RegisterBeanMapper(DependenteCuidador.class)
+@RegisterBeanMapper(Usuario.class)
 public interface DependenteCuidadorDao {
         
-    @SqlUpdate("insert into usuarioAdmin (idCuidador, idDependente, tipo, administrarRemedio, cadastrarRemedio) values (:idCuidador, :idDependente, :tipo, :administrarRemedio, :cadastrarRemedio)")
+    @SqlUpdate("insert into usuarioAdmin (idCuidador, idDependente, tipo, administrarRemedio, cadastrarRemedio) values (:idCuidador, :idUsuario, :tipo, :administrarRemedio, :cadastrarRemedio)")
     void insert(@BindBean DependenteCuidador dependenteCuidador);
     
     
