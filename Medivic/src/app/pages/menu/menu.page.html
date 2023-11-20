@@ -8,7 +8,7 @@
       
 
     <div id="botoes">
-      <ion-button routerLink="/remedios" class="botao" >Medicamentos</ion-button>
+      <ion-button [routerLink]="['/remedios/', this.usuario.idUsuario]" class="botao" >Medicamentos</ion-button>
       <ion-button routerLink="/dependentes" class="botao">Dependentes</ion-button>
       <!-- <ion-button class="botao" >Cuidadores</ion-button> -->
       <ion-button   routerLink="/meu-perfil" class="botao" >Meu Perfil</ion-button>

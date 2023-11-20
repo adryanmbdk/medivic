@@ -3,27 +3,31 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/menu"></ion-back-button>
     </ion-buttons>
-    <h1>Meus Medicamentos</h1>
+    <h1 *ngIf="userLogged">Meus Medicamentos</h1>
+    <div *ngIf="!userLogged">
+      <p class="header">Medicamentos de </p>
+      <h1>{{this.dependente.nome}}</h1>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="remedios" (click)="emuso()" >
+      <ion-tab-button tab="remedios" (click)="emuso()">
         <h3 *ngIf="finalizados">Em uso</h3>
         <h3 class="selected" *ngIf="!finalizados">Em uso</h3>
       </ion-tab-button>
-      <ion-tab-button tab="finalizados" (click)="finalizado()" >
+      <ion-tab-button tab="finalizados" (click)="finalizado()">
         <h3 *ngIf="!finalizados">Finalizados</h3>
         <h3 class="selected" *ngIf="finalizados">Finalizados</h3>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-<!--  EM USO -->
+  <!--  EM USO -->
   <ion-list *ngIf="!finalizados" class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
-      <ion-item class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>
+      <ion-item class="fundo" [routerLink]="['/cadastro-remedio', this.id, remedio.idRemedio]" detail>
         <ion-label class="fundo">
           <div class="linha1">
             <h2> {{remedio.nome}} </h2>
@@ -41,10 +45,10 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-<!--  FINALIZADOS -->
+  <!--  FINALIZADOS -->
   <ion-list *ngIf="finalizados" class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
-      <ion-item class="fundo" [routerLink]="['/cadastro-remedio/', remedio.idRemedio]" detail>
+      <ion-item class="fundo" [routerLink]="['/cadastro-remedio', this.id , remedio.idRemedio]" detail>
         <ion-label class="fundo">
           <div class="linha1">
             <h2> {{remedio.nome}} </h2>
@@ -60,7 +64,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="butao" routerLink="/cadastro-remedio">
+    <ion-fab-button class="butao" [routerLink]="['/cadastro-remedio', this.id]">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

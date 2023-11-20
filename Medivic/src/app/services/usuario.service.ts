@@ -52,6 +52,11 @@ export class UsuarioService {
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
+  async getDependente(idCuidador: number, idDependente: number){
+    let urlAuxiliar = this.urlCuidador(idCuidador) + "/" + idDependente;
+    return await this.httpClient.get(urlAuxiliar).toPromise();
+  }
+
   async deleteDependente(idCuidador: number, idDependente: number){
     let urlAuxiliar = this.urlCuidador(idCuidador) + "/" + idDependente;
     return await this.httpClient.delete(urlAuxiliar).toPromise();

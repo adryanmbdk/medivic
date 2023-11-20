@@ -20,7 +20,6 @@ export class TelaCadastroPage implements OnInit {
   senha!: string;
   confirmarSenha!: string;
   email!: string;
-  id!:string;
   formGroup: FormGroup;
   passwordType: string = 'password';
   passwordShow: boolean = false;
@@ -29,6 +28,7 @@ export class TelaCadastroPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private usuarioService: UsuarioService) {
     this.usuario = new Usuario();
+ 
 
     this.formGroup = this.formBuilder.group(
       {

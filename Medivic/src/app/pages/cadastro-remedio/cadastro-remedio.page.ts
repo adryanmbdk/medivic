@@ -19,6 +19,7 @@ export class CadastroRemedioPage implements OnInit {
   usuario: Usuario;
   horarios!: string[];
   criando!: boolean;
+  idUsuario: number;
 
   constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private formBuilder: FormBuilder, private remedioService: RemedioService, private loadingController: LoadingController, private alertController: AlertController) {
     let usuario = this.usuarioService.getUser()
@@ -65,7 +66,7 @@ export class CadastroRemedioPage implements OnInit {
       }
     )
 
-
+    this.idUsuario = this.activatedRoute.snapshot.params['idUsuario'];
     let id = this.activatedRoute.snapshot.params['idRemedio'];
     if (id != null) {
       this.remedioService.buscarPorId(parseInt(id)).then((json) => {
@@ -173,7 +174,7 @@ export class CadastroRemedioPage implements OnInit {
 
         if (this.remedio) {
           this.exibirMensagem('Registro salvo com sucesso!');
-          this.navController.navigateBack('/remedios');
+          this.navController.navigateBack('/remedios/' + this.idUsuario);
         } else {
           this.exibirMensagem('Erro ao salvar o registro!')
         }

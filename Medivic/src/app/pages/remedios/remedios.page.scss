@@ -3,6 +3,14 @@ ion-header ion-toolbar:first-of-type {
   padding-bottom: 0.6rem;
 }
 
+.header{
+  color:white;
+  font-size: 1rem;
+  text-align: center;
+  margin-right: 10vw;
+  margin-bottom: -2px;
+}
+
 ion-toolbar{
   --background: #131261;
   ion-back-button{
@@ -34,8 +42,12 @@ ion-tab-button{
 }
 
 .fundo{
-  --background: rgba(255, 255, 255, 0.227);
+  --background: rgba(255, 255, 255, 0.245);
   --border-style:none;
+  p{
+    color:white;
+    font-size: 1rem;    
+  }
 }
 
 ion-list{
@@ -60,6 +72,7 @@ ion-list{
   p{
     font-style: italic;
     font-weight: 600;
+    
   }
 }
 
@@ -74,7 +87,7 @@ ion-list{
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 1.6rem;
   color: white;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -97,11 +110,6 @@ h3{
   color: white;
   margin-top: 0px;
   margin-bottom: 0px;
-}
-
-p {
-  color:white;
-  font-size: 1rem;
 }
 
 .butao {

@@ -20,7 +20,7 @@
 
   <ion-list class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let dependente of dependentes">
-      <ion-item class="fundo" detail>
+      <ion-item class="fundo" [routerLink]="['/remedios/', dependente.idUsuario]" detail>
         <ion-label class="fundolabel">
           <div class="linha1">
             <h2> {{dependente.nome}} </h2>

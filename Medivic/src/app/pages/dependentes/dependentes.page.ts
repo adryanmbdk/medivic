@@ -3,6 +3,7 @@ import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { UsuarioAdmin } from 'src/app/model/usuario-admin';
 import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dependentes',
@@ -15,9 +16,10 @@ export class DependentesPage implements OnInit {
   usuario: Usuario;
   nome: string;
 
-  constructor(private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController, private alertController: AlertController, private loadingController: LoadingController) {
+  constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private alertController: AlertController, private loadingController: LoadingController) {
     this.dependentes = [];
     this.nome = "";
+
     let usuario = this.usuarioService.getUser();
     if (usuario.idUsuario === undefined) {
       this.exibirMensagem('Faça login primeiro')
