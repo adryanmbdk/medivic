@@ -157,7 +157,7 @@ export class CadastroRemedioPage implements OnInit {
           this.remedio.descricao = this.formGroup.value.descricao;
           this.remedio.unidade = this.formGroup.value.unidade;
           this.remedio.dosagem = this.formGroup.value.dosagem;
-          console.log("Mudança no nome,dosagem,unidade,descricao")
+          console.log("Mudança no nome,dosagem,unidade,descricao");
           console.log("Vezes:" + this.remedio.vezes);
         }
     }
@@ -165,7 +165,7 @@ export class CadastroRemedioPage implements OnInit {
 
 
     let usuario = this.usuarioService.getUser();
-    this.remedio.idUsuario = usuario.idUsuario;
+    this.remedio.idUsuario = this.idUsuario;
 
     this.remedioService.salvar(this.remedio)
       .then((json) => {
