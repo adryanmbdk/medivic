@@ -4,6 +4,8 @@ import { Remedio } from '../../model/remedio';
 import { RemedioService } from '../../services/remedio.service';
 import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
+import { HorarioService } from 'src/app/services/horario.service';
+
 
 interface SideNavToggle {
   screenWidth:number;
@@ -19,7 +21,7 @@ export class MenuPage implements OnInit {
   usuario: Usuario;
   numero: any;
 
-  constructor(private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController,private remedioService: RemedioService) {
+  constructor(private usuarioService: UsuarioService, private horarioService: HorarioService, private toastController: ToastController, private navController: NavController,private remedioService: RemedioService) {
     this.remedios = [];
     this.usuario = this.usuarioService.getUser();
     this.numero = 0;
@@ -38,9 +40,8 @@ export class MenuPage implements OnInit {
     await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
       this.remedios = <Remedio[]> (json);
       this.remedios.forEach((remedio) => {
-        let horaNow = this.formatarDataAtual();
-        let date = new Date();
-        //date.setDate(date.getDate()-1);
+        let horaNow = this.horarioService.formatarDataAtual();
+        let date = this.adjustTimeZone(horaNow);
         console.log(date);
         let dataNow = date.toISOString().split("T")[0];
         console.log(dataNow);
@@ -67,18 +68,13 @@ export class MenuPage implements OnInit {
     }
   }
 
-  formatarDataAtual(){
-    let now = new Date();
-    let hora = now.getHours();
-    let minuto = now.getMinutes();
-    if(hora < 10 && minuto > 10){
-      return "0" + hora + ":" + minuto;
-    }else if (minuto < 10 && hora > 10){
-      return hora + ":0" + minuto;
-    }else if (hora < 10 && minuto < 10){
-      return "0" + hora + ":0" + minuto;
+  adjustTimeZone(hora: string){
+    let date = new Date();
+    if(hora.split(":")[0] == "21" || hora.split(":")[0] == "22" || hora.split(":")[0] == "23"){
+      date.setHours(date.getHours()-3);
+      return date;
     }else{
-      return hora + ":" + minuto;
+      return date;
     }
   }
 

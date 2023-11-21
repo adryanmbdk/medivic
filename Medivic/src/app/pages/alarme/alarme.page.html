@@ -11,7 +11,7 @@
         <h3>Tomei</h3>
       </ion-button>
 
-      <ion-button (click)="adiar()" routerLink="/remedios" class="adia">
+      <ion-button (click)="adiar()" [routerLink]="['/remedios' ,this.idUsuario]" class="adia">
         <h3>Adiar</h3>
       </ion-button>
     </div>
