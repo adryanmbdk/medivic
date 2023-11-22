@@ -13,11 +13,15 @@ export class UsuarioService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   }
 
+  usuarios: Usuario[];
+
   url: string = 'http://localhost:8087/api/v1/usuario';
   urlCuidador= (idCuidador: number) =>
     `http://localhost:8087/api/v1/cuidador/${idCuidador}/dependente`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+    this.usuarios = []
+  }
   
   async salvar(usuario: Usuario) {
     if(usuario.idUsuario === 0){
@@ -25,6 +29,10 @@ export class UsuarioService {
     }else{
       return await this.httpClient.put(this.url, JSON.stringify(usuario), this.httpHeaders).toPromise();
     }
+  }
+  async get(id: number){
+    let urlAuxiliar = this.url + "/" + id;
+    return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
   async excluir(id: number){
@@ -40,7 +48,6 @@ export class UsuarioService {
     let urlAuxiliar = this.url + "/email/" + email + "/exists";
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
-
 
   async verificarLogin(email:string, senha: string){
     let urlAuxiliar = this.url + "/" + email + "/" + senha + "/authenticate";
@@ -80,6 +87,18 @@ export class UsuarioService {
 
   logout(){
     localStorage.removeItem('usuario');
+  }
+
+  addUsuarioRemedio(usuario: Usuario){
+    this.usuarios.push(usuario);
+  }
+
+  deleteUsuarioRemedio(){
+    this.usuarios = [];
+  }
+  
+  getUsuarioRemedio(){
+    return this.usuarios;
   }
 }
  

@@ -15,10 +15,12 @@ import { ActivatedRoute } from '@angular/router';
 export class AlarmePage implements OnInit {
   remedios: Remedio[];
   usuario: Usuario;
+  usuarios: Usuario[];
   hora: string;
   idUsuario: number;
   constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService, private horarioService: HorarioService, private toastController: ToastController, private remedioService: RemedioService, private navController: NavController) {
     this.remedios = this.remedioService.getRemedio();
+    this.usuarios = this.usuarioService.getUsuarioRemedio();
     this.usuario = this.usuarioService.getUser();
     this.hora = this.horarioService.formatarDataAtual();
     this.idUsuario = this.usuario.idUsuario;
@@ -55,6 +57,7 @@ export class AlarmePage implements OnInit {
         });
     }
     this.remedioService.deleteRemedio();
+    this.usuarioService.deleteUsuarioRemedio();
     clearTimeout(this.usuario.alarme);
   }
 
@@ -81,6 +84,7 @@ export class AlarmePage implements OnInit {
         });
     }
     this.remedioService.deleteRemedio();
+    this.usuarioService.deleteUsuarioRemedio();
     clearTimeout(this.usuario.alarme);
   }
 
