@@ -9,15 +9,6 @@
 
 <ion-content>
 
-  <!-- <div class="cadastrar">
-    <form class="formulario" [formGroup]="formGroup" (ngSubmit)="salvar()">
-      <ion-item>
-        <ion-label position="stacked">Nome</ion-label>
-        <input type="text" class="form-control border-0 shadow-none" formControlName="nome">
-      </ion-item>
-    </form>
-  </div> -->
-
   <ion-list class="fundo">
     <ion-item-sliding class="fundo" *ngFor="let dependente of dependentes">
       <ion-item class="fundo" [routerLink]="['/remedios/', dependente.idUsuario]" detail>

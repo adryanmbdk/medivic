@@ -49,7 +49,7 @@
       </div>
 
       <div class="action-button ion-padding">
-        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
+        <ion-button class="confirmar" type="submit" [disabled]="!isValid()" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
         <ion-button class="login" fill="outline" size="large" routerLink="/tela-cadastro" expand="block">Login</ion-button>
       </div>
     </form>

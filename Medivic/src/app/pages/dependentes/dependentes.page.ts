@@ -81,7 +81,7 @@ export class DependentesPage implements OnInit {
       } else {
         this.exibirMensagem('Dependente Adicionado');
         let dependente = <Usuario>json;
-        let cuidadorDependente = new UsuarioAdmin;
+        let cuidadorDependente = new UsuarioAdmin();
 
         cuidadorDependente.idCuidador = this.usuario.idUsuario;
         console.log(dependente.idUsuario);
@@ -106,6 +106,7 @@ export class DependentesPage implements OnInit {
     await this.usuarioService.listarDependentes(this.usuario.idUsuario)
       .then((json) => {
         this.dependentes = <Usuario[]>(json);
+        this.dependentes = this.dependentes.filter(dependente => dependente.isDependente === "y");
       });
 
     this.fecharLoader();
@@ -142,12 +143,15 @@ export class DependentesPage implements OnInit {
           text: 'Confirmar',
           cssClass: 'danger',
           handler: () => {
-            this.usuarioService.deleteDependente(this.usuario.idUsuario, dependente.idUsuario).then(() => {
+            this.usuarioService.excluir(dependente.idUsuario).then(()=>{
+            // não é possível deletar uma tabela de relacionamentos
+            // this.usuarioService.deleteDependente(this.usuario.idUsuario, dependente.idUsuario).then(() => {
               this.exibirMensagem('Excluido com sucesso!!');
               this.carregarLista();
             }).catch(() => {
               this.exibirMensagem('Erro ao excluir.');
-            });
+            // })
+          });
           }
         }
       ]

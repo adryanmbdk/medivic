@@ -76,6 +76,13 @@ export class UsuarioService {
       this.httpHeaders).toPromise();
   }
 
+//   async deleteRelationship(usuarioAdmin: UsuarioAdmin) {
+//     return await this.httpClient.delete(this.urlCuidador(usuarioAdmin.idCuidador), 
+//     {idCuidador: usuarioAdmin.idCuidador, idUsuario: usuarioAdmin.idDependente, tipo: usuarioAdmin.tipo, administrarRemedio: 
+//       usuarioAdmin.administrarRemedio, cadastrarRemedio: usuarioAdmin.cadastrarRemedio}, 
+//     this.httpHeaders).toPromise();
+// }
+
   setUser(usuario: Usuario) {
     localStorage.setItem('usuario', JSON.stringify(usuario));
   }

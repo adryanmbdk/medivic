@@ -1,13 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cadastro-dependente</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/remedios/{{this.id}}'></ion-back-button>
+    </ion-buttons>
+    <h1 class="titulo">Adicionar dados para:<br></h1>
+    <h1 class="nome">{{this.dependente.nome}}</h1>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cadastro-dependente</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="cadastro-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>{{this.dependente.nome}} deixará de ser um dependente uma vez que sua conta for criada.</h1>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()" class="cadastro-form ion-padding">
+
+     <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input clearInput type="email" formControlName="email" name="email"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [type]="passwordType" formControlName="senha"></ion-input>
+          <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'"
+            [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
+        </ion-item>
+      </div>
+
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Confirmar Senha</ion-label>
+          <ion-input [type]="confirmarPasswordType" formControlName="confirmarSenha"></ion-input>
+          <ion-icon class="passwordicon" [name]="confirmarPasswordShow === true ? 'eye' : 'eye-off'"
+            [color]="confirmarPasswordShow === true ? 'white' : 'gray'" slot="end" (click)="toggleConfirmarPassword()">
+          </ion-icon>
+        </ion-item>
+        <p *ngIf="verifyPasswords()" class="erro">As senhas não são iguais</p>
+      </div>
+
+      <div class="action-button ion-padding">
+        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!isValid()" [disabled]="!formGroup.valid">Confirmar</ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>

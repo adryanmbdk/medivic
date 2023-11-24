@@ -1,12 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/menu"></ion-back-button>
+      <!-- se é um usuário, volta pro menu-->
+      <ion-back-button *ngIf="userLogged" defaultHref="/menu"></ion-back-button>
+      <!-- se é um dependente, volta pra lista dos dependentes-->
+      <ion-back-button *ngIf="!userLogged" defaultHref="/dependentes"></ion-back-button>
     </ion-buttons>
+
+    <!-- se é um usuário, aparece "Meus Medicamentos"-->
     <h1 *ngIf="userLogged">Meus Medicamentos</h1>
-    <div *ngIf="!userLogged">
-      <p class="header">Medicamentos de </p>
-      <h1>{{this.dependente.nome}}</h1>
+    <!-- se é um dependente, aparece o nome dele-->
+    <div class="notlogged" *ngIf="!userLogged">
+      <div class="header-text-notlogged">
+        <p class="header">Medicamentos de </p>
+        <h1>{{this.dependente.nome}}</h1>
+      </div>
+      <div class="header-button-alt">
+        <ion-button class="header-botao" [routerLink]="['/cadastro-dependente/', this.id]"
+        type="submit" expand="block">Tipo de <br>conta</ion-button>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>

@@ -24,17 +24,19 @@ export class RemediosPage implements ViewWillEnter {
   id: number;
   userLogged: boolean = true;
 
-  constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private alertController: AlertController, private remedioService: RemedioService, private loadingController: LoadingController) {
+  constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute, private toastController: ToastController, private navController: NavController, private alertController: AlertController, 
+    private remedioService: RemedioService, private loadingController: LoadingController) {
+
     this.remedios = [];
     this.id = parseInt(this.activatedRoute.snapshot.params['idUsuario']);
-    this.usuario = usuarioService.getUser();
+    this.usuario = this.usuarioService.getUser();
     this.dependente = new Usuario();
     this.checkId(this.id);
 
 
     let usuario = this.usuarioService.getUser();
     if (usuario.idUsuario === undefined) {
-      this.exibirMensagem('Faça login primeiro')
+      this.exibirMensagem('Faça login primeiro');
       this.navController.navigateBack('/login');
     }
     this.remedio = new Remedio();
@@ -46,6 +48,9 @@ export class RemediosPage implements ViewWillEnter {
   }
 
   ngOnInit() {
+    console.log(this.usuario.idUsuario);
+    console.log(this.id);
+    console.log(this.dependente.idUsuario);
   }
 
   async ionViewWillEnter() {
@@ -139,6 +144,7 @@ export class RemediosPage implements ViewWillEnter {
     });
     toast.present();
   }
+
 
   emuso() {
     this.finalizados = false;

@@ -1,0 +1,93 @@
+ion-content {
+  --background: linear-gradient(-270deg, #864988, #694490, #7270e6);
+
+  .confirmar {
+    --background: rgb(159, 73, 234);
+    width: 100%;
+    font-weight: bold;
+  }
+
+  ion-item.item-has-focus>ion-label {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  ion-item.ion-invalid>ion-label {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  ion-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+}
+
+ion-toolbar {
+  --background: #131261;
+  height: 5rem;
+
+  .titulo {
+    margin-top: 0.6rem;
+  }
+
+  .nome {
+    text-decoration: underline;
+    font-weight: 600;
+    color: #c744fb;
+  }
+
+  ion-back-button {
+    --color: whitesmoke;
+  }
+}
+
+.container {
+
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  margin: auto;
+
+  .item-label-stacked .sc-ion-input-md-h {
+    --padding-start: 0.8rem;
+  }
+
+  .form-control {
+    background-color: #131261;
+    color: whitesmoke;
+    margin-top: 0.5rem;
+  }
+
+  .formulario {
+    background: rgba(33, 2, 82, 0.432);
+
+
+  }
+
+  .item {
+    --background: rgba(255, 255, 255, 0);
+    --border-style: none;
+  }
+
+  .action-button {
+    display: flex;
+    justify-content: center;
+
+
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
+.erro{
+  color: rgb(254, 113, 113);
+  font-size: 0.825rem;
+  text-shadow: 0 0 4px red;
+}

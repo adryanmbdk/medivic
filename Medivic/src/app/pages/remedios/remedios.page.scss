@@ -3,85 +3,105 @@ ion-header ion-toolbar:first-of-type {
   padding-bottom: 0.6rem;
 }
 
-.header{
-  color:white;
+ion-header {
+  .notlogged {
+    display: flex;
+    justify-content: space-evenly;
+
+    .header-button-alt {
+      .header-botao {
+        font-weight: 600;
+        font-size: 1rem;
+        --background:#fff;
+        --color:white !important;
+      }
+    }
+  }
+}
+
+.header {
+  color: white;
   font-size: 1rem;
   text-align: center;
   margin-right: 10vw;
   margin-bottom: -2px;
 }
 
-ion-toolbar{
+ion-toolbar {
   --background: #131261;
-  ion-back-button{
-      --color: whitesmoke;
+
+  ion-back-button {
+    --color: whitesmoke;
   }
 }
 
-ion-content{
-  --background: linear-gradient(-90deg,#864988, #694490, #5250cd );
+ion-content {
+  --background: linear-gradient(-90deg, #864988, #694490, #5250cd);
 }
 
-ion-tabs{
+ion-tabs {
   position: relative;
   height: 4rem;
   max-height: 4rem;
 }
 
-ion-tab-bar{
+ion-tab-bar {
   --background: #100f4f;
 }
 
-ion-tab-button{
+ion-tab-button {
   font-size: 1.4rem;
 }
 
-.selected{
-  color:#e44ae9;
+.selected {
+  color: #e44ae9;
   font-weight: 700;
 }
 
-.fundo{
+.fundo {
   --background: rgba(255, 255, 255, 0.245);
-  --border-style:none;
-  p{
-    color:white;
-    font-size: 1rem;    
+  --border-style: none;
+
+  p {
+    color: white;
+    font-size: 1rem;
   }
 }
 
-ion-list{
-  --border-style:none;
-  
+ion-list {
+  --border-style: none;
+
 }
 
-.item{
-  border-bottom:solid 1.5px rgba(255, 255, 255, 0.604);
-  border-top:solid 1.5px rgba(255, 255, 255, 0.604);
+.item {
+  border-bottom: solid 1.5px rgba(255, 255, 255, 0.604);
+  border-top: solid 1.5px rgba(255, 255, 255, 0.604);
 }
 
-.list-md{
+.list-md {
   background: none;
-  
+
 }
 
-.linha1{
+.linha1 {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  p{
+
+  p {
     font-style: italic;
     font-weight: 600;
-    
+
   }
 }
 
-.linha3{
+.linha3 {
   display: inline-flex;
   align-items: center;
-  gap:0.5rem;
-  .horario{
-    color:#080736;
+  gap: 0.5rem;
+
+  .horario {
+    color: #080736;
     font-weight: 600;
   }
 }
@@ -95,7 +115,7 @@ h1 {
   margin-right: 10vw;
 }
 
-h2{
+h2 {
   font-size: 1.6rem;
   color: rgb(39 20 69);
   margin-top: 0px;
@@ -105,7 +125,7 @@ h2{
   text-decoration-thickness: 3px;
 }
 
-h3{
+h3 {
   font-size: 1.2rem;
   color: white;
   margin-top: 0px;

@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'cadastro-dependente',
     loadChildren: () => import('./pages/cadastro-dependente/cadastro-dependente.module').then(m => m.CadastroDependentePageModule)
   },
+  {
+    path: 'cadastro-dependente/:idUsuario',
+    loadChildren: () => import('./pages/cadastro-dependente/cadastro-dependente.module').then(m => m.CadastroDependentePageModule)
+  },
 ];
 
 @NgModule({
