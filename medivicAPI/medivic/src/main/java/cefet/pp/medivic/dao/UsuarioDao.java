@@ -21,7 +21,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 public interface UsuarioDao {
 
         @GetGeneratedKeys
-        @SqlUpdate("insert into usuario (nome, senha, email, isCuidador) values (:nome, :senha, :email, :isCuidador)")
+        @SqlUpdate("insert into usuario (nome, senha, email, isDependente) values (:nome, :senha, :email, :isDependente)")
         int insert(@BindBean Usuario usuario);
 
         @SqlQuery("select * " +
@@ -48,8 +48,8 @@ public interface UsuarioDao {
         @SqlUpdate("update usuario " +
                         " set nome = :nome, " +
                         "     senha = :senha, " +
-                        "     email = :email " +
-                        "     isCuidador = :isCuidador" +
+                        "     email = :email, " +
+                        "     isDependente = :isDependente" +
                         " where idUsuario = :idUsuario;")
         int update(@BindBean Usuario usuario);
 

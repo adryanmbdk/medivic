@@ -4,6 +4,8 @@ import { Remedio } from 'src/app/model/remedio';
 import { RemedioService } from 'src/app/services/remedio.service';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { HorarioService } from 'src/app/services/horario.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-alarme',
@@ -13,9 +15,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class AlarmePage implements OnInit {
   remedios: Remedio[];
   usuario: Usuario;
-  constructor(private usuarioService: UsuarioService, private toastController: ToastController, private remedioService: RemedioService, private navController: NavController) {
+  usuarios: Usuario[];
+  hora: string;
+  idUsuario: number;
+  constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService, private horarioService: HorarioService, private toastController: ToastController, private remedioService: RemedioService, private navController: NavController) {
     this.remedios = this.remedioService.getRemedio();
-    this.usuario = this.usuarioService.getUser()
+    this.usuarios = this.usuarioService.getUsuarioRemedio();
+    this.usuario = this.usuarioService.getUser();
+    this.hora = this.horarioService.formatarDataAtual();
+    this.idUsuario = this.usuario.idUsuario;
   }
 
   ngOnInit() {
@@ -49,6 +57,7 @@ export class AlarmePage implements OnInit {
         });
     }
     this.remedioService.deleteRemedio();
+    this.usuarioService.deleteUsuarioRemedio();
     clearTimeout(this.usuario.alarme);
   }
 
@@ -75,6 +84,7 @@ export class AlarmePage implements OnInit {
         });
     }
     this.remedioService.deleteRemedio();
+    this.usuarioService.deleteUsuarioRemedio();
     clearTimeout(this.usuario.alarme);
   }
 
@@ -106,10 +116,12 @@ export class AlarmePage implements OnInit {
     }
   }
 
+  //fix timezone later
   calcularDtNovo(novo: string, intervalo: number) {
     let aux = parseInt(novo.split(":")[0]) + intervalo;
     let aux2 = 0;
     let date = new Date();
+    
     let mes = date.getMonth() + 1;
     if (aux > 23) {
       aux2 = aux / 24;
@@ -143,6 +155,16 @@ export class AlarmePage implements OnInit {
       } else {
         return (novo.split(":")[0] + ":" + minutoNovo);
       }
+    }
+  }
+
+  adjustTimeZone(hora: string){
+    let date = new Date();
+    if(hora.split(":")[0] == "21" || hora.split(":")[0] == "22" || hora.split(":")[0] == "23"){
+      date.setHours(date.getHours()-3);
+      return date;
+    }else{
+      return date;
     }
   }
 

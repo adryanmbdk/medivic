@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content>
-  <div class="login-section ion-padding">
+  <div class="cadastro-section ion-padding">
     <div class="heading ion-padding">
       <h1>Cadastro</h1>
     </div>
-    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()" class="login-form ion-padding">
+    <form [formGroup]="formGroup" (ngSubmit)="cadastrar()" class="cadastro-form ion-padding">
       <div class="form-input">
         <ion-icon name="person-outline" class="lefticon"></ion-icon>
         <ion-item>
@@ -19,6 +19,7 @@
          <ion-input clearInput type="text" formControlName="nome" name="nome" ></ion-input> 
         </ion-item>
       </div>
+
       <div class="form-input">
         <ion-icon name="mail-outline" class="lefticon"></ion-icon>
         <ion-item>
@@ -26,6 +27,7 @@
           <ion-input clearInput type="email" formControlName="email" name="email"></ion-input>
         </ion-item>
       </div>
+
       <div class="form-input">
         <ion-icon name="lock-closed-outline" class="lefticon"></ion-icon>
         <ion-item>
@@ -34,9 +36,21 @@
           <ion-icon class="passwordicon" [name]="passwordShow === true ? 'eye' : 'eye-off'" [color]="passwordShow === true ? 'white' : 'gray'" slot="end" (click)="togglePassword()"></ion-icon>
         </ion-item>
       </div>
+
+      <div class="form-input">
+        <ion-icon name="lock-closed-outline" class="lefticon"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Confirmar Senha</ion-label>
+          <ion-input [type]="confirmarPasswordType" formControlName="confirmarSenha"></ion-input>
+          <ion-icon class="passwordicon" [name]="confirmarPasswordShow === true ? 'eye' : 'eye-off'"
+           [color]="confirmarPasswordShow === true ? 'white' : 'gray'" slot="end" (click)="toggleConfirmarPassword()"></ion-icon>
+        </ion-item>
+        <p *ngIf="verifyPasswords()" class="erro">As senhas não são iguais</p>
+      </div>
+
       <div class="action-button ion-padding">
-        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
-        <ion-button class="login" fill="outline" size="large" routerLink="/tela-login" expand="block">Login</ion-button>
+        <ion-button class="confirmar" type="submit" [disabled]="!isValid()" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
+        <ion-button class="login" fill="outline" size="large" routerLink="/tela-cadastro" expand="block">Login</ion-button>
       </div>
     </form>
   </div>

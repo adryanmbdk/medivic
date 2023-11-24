@@ -1,14 +1,16 @@
 DROP SCHEMA IF EXISTS medivic;
 CREATE SCHEMA IF NOT EXISTS medivic;
-
+DELETE FROM usuarioAdmin WHERE idDependente = 0 AND idCuidador = 1;
+SELECT * FROM usuarioAdmin;
+SELECT * FROM usuario;
 USE medivic;
 
 CREATE TABLE IF NOT EXISTS usuario (
     idUsuario INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(60) NOT NULL,
-    senha VARCHAR(20) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    isCuidador INT NOT NULL,
+    senha VARCHAR(20),
+    email VARCHAR(45),
+    isDependente VARCHAR(3) NOT NULL,
     PRIMARY KEY (idUsuario)
 );
 
@@ -20,7 +22,7 @@ CREATE TABLE IF NOT EXISTS remedio (
   unidade  VARCHAR(30) NOT NULL,
   quantDias INT NOT NULL,
   intervalo INT NOT NULL,
-  dosagem INT NOT NULL,
+  dosagem VARCHAR(15) NOT NULL,
   dtInicio VARCHAR(20) NOT NULL,
   dtNovo VARCHAR(20) NOT NULL,
   horarioNovo VARCHAR(20) NOT NULL,
@@ -45,7 +47,7 @@ CREATE TABLE IF NOT EXISTS remedio (
   tipo CHAR(1) NOT NULL COMMENT 'A=Administrador;C=Cuidador',
   administrarRemedio INT NOT NULL,
   cadastrarRemedio INT NOT NULL,
-  PRIMARY KEY (idCuidador, idDependente),
-  CONSTRAINT fk_usuario_admin_Usuario1 FOREIGN KEY (idCuidador) REFERENCES usuario(idUsuario),
-  CONSTRAINT fk_usuario_admin_Usuario2 FOREIGN KEY (idDependente) REFERENCES usuario(idUsuario)
+  PRIMARY KEY (idCuidador, idDependente)
+  #CONSTRAINT fk_usuario_admin_Usuario1 FOREIGN KEY (idCuidador) REFERENCES usuario(idUsuario),
+  #CONSTRAINT fk_usuario_admin_Usuario2 FOREIGN KEY (idDependente) REFERENCES usuario(idUsuario)
   );

@@ -4,7 +4,13 @@ import { Remedio } from '../../model/remedio';
 import { RemedioService } from '../../services/remedio.service';
 import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
+import { HorarioService } from 'src/app/services/horario.service';
 
+
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -12,15 +18,18 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class MenuPage implements OnInit {
   remedios: Remedio[];
+  dependentes: Usuario[];
   usuario: Usuario;
   numero: any;
 
-  constructor(private usuarioService: UsuarioService, private toastController: ToastController, private navController: NavController,private remedioService: RemedioService) {
+  constructor(private usuarioService: UsuarioService, private horarioService: HorarioService, private toastController: ToastController, private navController: NavController, private remedioService: RemedioService) {
     this.remedios = [];
+    this.dependentes = [];
     this.usuario = this.usuarioService.getUser();
     this.numero = 0;
+    
   }
-  
+
   ngOnInit() {
     this.numero = setInterval(() => {
       console.log("procurando por tarefa");
@@ -28,32 +37,36 @@ export class MenuPage implements OnInit {
     }, 5000);
   }
 
-  async verificarAlarmes() {  
+  async verificarAlarmes() {
     this.remedioService.deleteRemedio();
+    this.usuarioService.deleteUsuarioRemedio();
     let contador = 0;
-    await this.remedioService.listar(this.usuario.idUsuario).then(async (json)=>{
-      this.remedios = <Remedio[]> (json);
-      this.remedios.forEach((remedio) => {
-        let horaNow = this.formatarDataAtual();
-        let date = new Date();
-        //date.setDate(date.getDate()-1);
-        console.log(date);
-        let dataNow = date.toISOString().split("T")[0];
-        console.log(dataNow);
-        console.log(remedio.nome);
-        console.log("Horario de tocar: "+ remedio.horarioNovo + "\nHorario atual: "+ horaNow);
-        console.log("Dia de tocar: "+ remedio.dtNovo + "\nDia atual: "+ dataNow);
-        console.log("----------------------------------------------");
 
-        if(remedio.horarioNovo === horaNow && dataNow === remedio.dtNovo){
-          contador++;
-          this.remedioService.addRemedio(remedio);
-        }
-      });
+    this.fillRemedios();
+
+    this.remedios.forEach((remedio) => {
+      let horaNow = this.horarioService.formatarDataAtual();
+      let date = this.adjustTimeZone(horaNow);
+      console.log(date);
+      let dataNow = date.toISOString().split("T")[0];
+      console.log(dataNow);
+      console.log(remedio.nome);
+      console.log("Horario de tocar: " + remedio.horarioNovo + "\nHorario atual: " + horaNow);
+      console.log("Dia de tocar: " + remedio.dtNovo + "\nDia atual: " + dataNow);
+      console.log("----------------------------------------------");
+
+      if (remedio.horarioNovo === horaNow && dataNow === remedio.dtNovo) {
+        contador++;
+        this.remedioService.addRemedio(remedio);
+        this.usuarioService.get(remedio.idUsuario).then(async (json) => {
+          let usuario = <Usuario>(json);
+          this.usuarioService.addUsuarioRemedio(usuario);
+        });
+      }
       console.log(this.remedios);
     });
-    if (contador > 0){
-        this.usuario.alarme = setInterval(() => {
+    if (contador > 0) {
+      this.usuario.alarme = setInterval(() => {
         let audio = new Audio('assets/Osmium.ogg');
         audio.play();
       }, 3000);
@@ -63,27 +76,45 @@ export class MenuPage implements OnInit {
     }
   }
 
-  formatarDataAtual(){
-    let now = new Date();
-    let hora = now.getHours();
-    let minuto = now.getMinutes();
-    if(hora < 10 && minuto > 10){
-      return "0" + hora + ":" + minuto;
-    }else if (minuto < 10 && hora > 10){
-      return hora + ":0" + minuto;
-    }else if (hora < 10 && minuto < 10){
-      return "0" + hora + ":0" + minuto;
-    }else{
-      return hora + ":" + minuto;
+  adjustTimeZone(hora: string) {
+    let date = new Date();
+    if (hora.split(":")[0] == "21" || hora.split(":")[0] == "22" || hora.split(":")[0] == "23") {
+      date.setHours(date.getHours() - 3);
+      return date;
+    } else {
+      return date;
     }
   }
 
-  sair(){
+  sair() {
     clearTimeout(this.numero);
     this.usuarioService.logout();
     this.navController.navigateBack('/tela-inicial');
     this.exibirMensagem('Saindo...  ')
   }
+
+  async fillRemedios(){
+    this.fillDependentes();
+    await this.remedioService.listar(this.usuario.idUsuario).then(async (json) => {
+      this.remedios = <Remedio[]>(json);
+      for (let dependente of this.dependentes){
+        await this.remedioService.listar(dependente.idUsuario).then(async (json2) => {
+        let remedios = <Remedio[]>(json2);
+        for (let remedio of remedios){
+          this.remedios[this.remedios.length] = remedio;
+        }
+      }) 
+      }
+    });
+  }
+
+  async fillDependentes(){
+    await this.usuarioService.listarDependentes(this.usuario.idUsuario).then(async (json) => {
+      this.dependentes = <Usuario[]>(json);
+    });
+  }
+
+
 
   async exibirMensagem(texto: string) {
     const toast = await this.toastController.create({

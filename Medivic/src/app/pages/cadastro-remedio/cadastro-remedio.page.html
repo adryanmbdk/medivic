@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/remedios"></ion-back-button>
+      <ion-back-button [routerLink]="['/remedios',this.idUsuario]" defaultHref="/remedios"></ion-back-button>
     </ion-buttons>
     <h1>Adicionar Medicamento</h1>
   </ion-toolbar>
@@ -27,7 +27,8 @@
 
       <ion-item>
         <ion-label position="stacked">Dosagem</ion-label>
-        <input type="number" class="form-control border-0 shadow-none" formControlName="dosagem">
+        <input type="text" mask="separator.2" thousandSeparator="." decimalMarker=","
+        class="form-control border-0 shadow-none" formControlName="dosagem">
       </ion-item>
 
       <ion-item>
@@ -72,7 +73,7 @@
 
       <div class="action-button">
         <ion-button class="botaosubmit" type="submit" expand="block" [disabled]="!formGroup.valid"
-          routerLink="/remedios">Confirmar</ion-button>
+          [routerLink]='["/remedios", this.idUsuario]'>Confirmar</ion-button>
       </div>
 
     </form>

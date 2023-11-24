@@ -24,7 +24,8 @@ public class Usuario {
     protected String nome;
     protected String senha;
     protected String email;
-    protected int isCuidador;
+    protected String isDependente;
     
+    protected List<Usuario> usuarios;
     protected List<Remedio> remedios;
 }

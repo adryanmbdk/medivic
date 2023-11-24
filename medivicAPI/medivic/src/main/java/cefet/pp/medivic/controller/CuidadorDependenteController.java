@@ -48,12 +48,12 @@ public class CuidadorDependenteController {
     }
     
     @DeleteMapping({"", "/"})
-    public List<Usuario> deletarByAluno(@PathVariable("idCuidador") int idCuidador){
+    public List<Usuario> deletarByCuidador(@PathVariable("idCuidador") int idCuidador){
         List<Usuario> usuarioList = cuidadorDependenteService.getByCuidador(idCuidador);
         if (usuarioList == null || usuarioList.isEmpty()){
             throw new RuntimeException("Nao existe usuario com este idCuidador para ser excluido....");
         }
-        cuidadorDependenteService.deleteAllByAluno(idCuidador);
+        cuidadorDependenteService.deleteAllByCuidador(idCuidador);
         return usuarioList;
     }
     
