@@ -73,6 +73,7 @@ export class DependentesPage implements OnInit {
 
   async addDependente(name: string) {
     this.dependente.nome = name;
+    this.dependente.senha = this.gerarCodigoAleatorio();
     this.dependente.isDependente = "y";
 
     this.usuarioService.salvar(this.dependente).then((json) => {
@@ -167,5 +168,22 @@ export class DependentesPage implements OnInit {
     toast.present();
   }
 
+  gerarCodigoAleatorio(): string {
+    const caracteres = '0123456789abcdefghijklmnopqrstuvwxyz';
+    let codigo = '';
+  
+    for (let i = 0; i < 5; i++) {
+      let caractereAleatorio;
+      
+      do {
+        const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+        caractereAleatorio = caracteres.charAt(indiceAleatorio);
+      } while (caractereAleatorio === codigo.charAt(i - 1));  // Verifica se o caractere se repete sequencialmente
+  
+      codigo += caractereAleatorio;
+    }
+  
+    return codigo;
+  }
 
 }

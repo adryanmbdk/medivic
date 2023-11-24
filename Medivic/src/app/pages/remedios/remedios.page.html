@@ -12,8 +12,9 @@
     <!-- se é um dependente, aparece o nome dele-->
     <div class="notlogged" *ngIf="!userLogged">
       <div class="header-text-notlogged">
-        <p class="header">Medicamentos de </p>
+        <h3 class="header">Medicamentos de </h3>
         <h1>{{this.dependente.nome}}</h1>
+        <p>Código: {{this.dependente.senha}}</p>
       </div>
       <div class="header-button-alt">
         <ion-button class="header-botao" [routerLink]="['/cadastro-dependente/', this.id]"
