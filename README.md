@@ -13,7 +13,6 @@ Versão Final - [Documentação - Medivic..pdf](https://github.com/adryanmbdk/me
 Versão Inicial - [Documentação Sucinta do Sistema_PP-Adryan-Caldeira-2023 .docx.pdf](https://github.com/adryanmbdk/medivic/files/13468683/Documentacao.Sucinta.do.Sistema_PP-Adryan-Caldeira-2023.docx.pdf) (26/04/2023)
 
 
-# Documentação da Api:
 
 
 
