@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <h1>Meus Medicamentos</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="remedios" (click)="emuso()">
+        <h3 *ngIf="finalizados">Em uso</h3>
+        <h3 class="selected" *ngIf="!finalizados">Em uso</h3>
+      </ion-tab-button>
+      <ion-tab-button tab="finalizados" (click)="finalizado()">
+        <h3 *ngIf="!finalizados">Finalizados</h3>
+        <h3 class="selected" *ngIf="finalizados">Finalizados</h3>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  <!--  EM USO -->
+  <ion-list *ngIf="!finalizados" class="fundo">
+    <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
+      <ion-item class="fundo">
+        <ion-label class="fundo">
+          <div class="linha1">
+            <h2> {{remedio.nome}} </h2>
+            <p> - {{remedio.dosagem}} {{remedio.unidade}}</p>
+          </div>
+          <p>{{remedio.descricao}}</p>
+          <div class="linha3">
+            <h3 clas="dosagem">Próximo: </h3>
+            <h3 class="horario">{{remedio.dtNovo}} às {{remedio.horarioNovo}}</h3>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <!--  FINALIZADOS -->
+  <ion-list *ngIf="finalizados" class="fundo">
+    <ion-item-sliding class="fundo" *ngFor="let remedio of remedios">
+      <ion-item class="fundo">
+        <ion-label class="fundo">
+          <div class="linha1">
+            <h2> {{remedio.nome}} </h2>
+            <p> - {{remedio.dosagem}} {{remedio.unidade}}</p>
+          </div>
+          <p>{{remedio.descricao}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

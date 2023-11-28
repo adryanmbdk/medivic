@@ -74,6 +74,7 @@ export class DependentesPage implements OnInit {
   async addDependente(name: string) {
     this.dependente.nome = name;
     this.dependente.senha = this.gerarCodigoAleatorio();
+    this.dependente.email = "dependente" + this.dependente.senha;
     this.dependente.isDependente = "y";
 
     this.usuarioService.salvar(this.dependente).then((json) => {

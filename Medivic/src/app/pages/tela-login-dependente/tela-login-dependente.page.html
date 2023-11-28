@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tela-inicial"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>Dependente</h1>
+    </div>
+    <form [formGroup]="formGroup" (ngSubmit)="login()" class="login-form ion-padding">
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Código</ion-label>
+          <ion-input type="text" formControlName="codigo" name="codigo"></ion-input>
+        </ion-item>
+      </div>
+      <div class="action-button ion-padding">
+        <ion-button class="confirmar" type="submit" expand="block" [disabled]="!formGroup.valid">Confirmar</ion-button>
+        <div class='forgot'>
+          <a routerLink="/tela-login"><p>Entrar como usuário</p></a>
+        </div>
+        <ion-button class="cadastro" expand="block" size="large" fill="outline"
+          routerLink="/tela-cadastro">Cadastro</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,127 +1,146 @@
-ion-toolbar{
-    --background: #131261;
-    ion-back-button{
-        --color: whitesmoke;
-    }
+ion-toolbar {
+  --background: #131261;
+
+  ion-back-button {
+    --color: whitesmoke;
+  }
 }
 
 ion-content {
-    --background: url('/assets/medivic/pilulabaixaopacidade2.png') no-repeat center center / cover;
+  --background: url('/assets/medivic/pilulabaixaopacidade2.png') no-repeat center center / cover;
 }
 
 
 .login-section {
-    height: 32.5rem;
-    width: 80%;
-    max-width: 500px;
+  height: 32.5rem;
+  width: 80%;
+  max-width: 500px;
 
-    background-color: rgb(42, 41, 116, .85);
-    right: 0;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    position: fixed;
-    margin: auto;
-    border-radius: 3rem;
+  background-color: rgb(42, 41, 116, .85);
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  position: fixed;
+  margin: auto;
+  border-radius: 3rem;
 
-    .heading{
-        text-align: center;
-        h1{
-            font-size: 3rem;
-            font-weight: 600;
-            color: whitesmoke;
-        }
-        p{
-            margin-top: 1.25rem;
-            font-size: 1rem;
-            color: whitesmoke;
-        }
+  .heading {
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: whitesmoke;
     }
 
-    .item-has-focus{
-        --highlight-background: rgb(159, 73, 234);
-        ion-label{color: rgb(159, 73, 234);
-        }
+    p {
+      margin-top: 1.25rem;
+      font-size: 1rem;
+      color: whitesmoke;
+    }
+  }
+
+  .item-has-focus {
+    --highlight-background: rgb(159, 73, 234);
+
+    ion-label {
+      color: rgb(159, 73, 234);
+    }
+  }
+
+  .login-form {
+    .form-input {
+      position: relative;
+      margin-bottom: 0.625rem;
+
+      ion-item::part(native) {
+        padding-left: 0;
+        background: #131261;
+
+        color: whitesmoke;
+      }
+
+      .lefticon {
+        position: absolute;
+        top: 1rem;
+        z-index: 2;
+        font-size: 1.2rem;
+        left: 0.3125rem;
+        color: whitesmoke;
+      }
+
+      .passwordicon {
+        position: absolute;
+        top: 1rem;
+        z-index: 2;
+        font-size: 1.2rem;
+        right: 0.75rem;
+        color: whitesmoke;
+      }
+
+      ion-label {
+        position: absolute;
+        margin-left: 2.25rem;
+        font-weight: bolder;
+        font-size: 0.8rem;
+        top: 0.2rem;
+      }
+
+      ion-input {
+        font-size: 0.9rem;
+
+        --padding-start: 2.25rem;
+        --padding-top: 2.25rem;
+        color: whitesmoke;
+      }
+    }
+  }
+
+  .action-button {
+    text-align: center;
+
+    .confirmar {
+      --background: rgb(159, 73, 234);
+      width: 100%;
+      font-weight: bold;
+
     }
 
-    .login-form{
-        .form-input{  
-            position: relative;
-            margin-bottom: 0.625rem;
-            ion-item::part(native) {
-                padding-left: 0;
-                background: #131261;
-
-                color: whitesmoke;
-            }
-
-            .lefticon{
-                position: absolute;
-                top: 1rem;
-                z-index: 2;
-                font-size:1.2rem;
-                left: 0.3125rem;
-                color: whitesmoke;
-            }
-
-            .passwordicon{
-                position: absolute;
-                top: 1rem;
-                z-index: 2;
-                font-size:1.2rem;
-                right: 0.75rem;
-                color: whitesmoke;
-            }
-
-            ion-label{
-                position: absolute;
-                margin-left: 2.25rem;
-                font-weight: bolder;
-                font-size: 0.8rem;
-                top: 0.2rem;
-            }
-
-            ion-input{
-                font-size: 0.9rem;
-
-                --padding-start: 2.25rem;
-                --padding-top: 2.25rem;
-                color: whitesmoke;
-            }
-        }
+    p {
+      margin-top: 0.975rem;
+      font-size: 1rem;
+      color: whitesmoke;
     }
 
-    .action-button{
-        text-align: center;
-        .confirmar{
-            --background: rgb(159, 73, 234);
-            width: 100%;
-            font-weight: bold;
-
-        }
-        p{
-            margin-top: 0.975rem;
-            font-size: 1rem;
-            color: whitesmoke;
-        }
-        .cadastro{
-            --border-color: #c5c5c5;
-            --color: rgb(255, 255, 255);
-            font-weight: bold;
-            width: 100%;
-            margin-top: 0.75rem;
-        }
-        .login{
-            --border-color: #c5c5c5;
-            --color: rgb(255, 255, 255);
-            font-weight: bold;
-            width: 100%;
-            margin-top: 1rem
-        }
-        .forgot{
-            a{text-decoration: none;}
-            margin-top: 0.75rem;
-            color: white;
-        }
+    .cadastro {
+      --border-color: #c5c5c5;
+      --color: rgb(255, 255, 255);
+      font-weight: bold;
+      width: 100%;
+      margin-top: 0.75rem;
     }
+
+    .login {
+      --border-color: #c5c5c5;
+      --color: rgb(255, 255, 255);
+      font-weight: bold;
+      width: 100%;
+      margin-top: 1rem
+    }
+
+    .forgot {
+      a {
+        text-decoration: none;
+      }
+
+      margin-top: 0.75rem;
+
+      color: white;
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }

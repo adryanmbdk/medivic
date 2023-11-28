@@ -48,10 +48,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/alarme/alarme.module').then(m => m.AlarmePageModule)
   },
   {
-    path: 'tela-esqueci-a-senha',
-    loadChildren: () => import('./pages/tela-esqueci-a-senha/tela-esqueci-a-senha.module').then(m => m.TelaEsqueciASenhaPageModule)
-  },
-  {
     path: 'dependentes',
     loadChildren: () => import('./pages/dependentes/dependentes.module').then(m => m.DependentesPageModule)
   },
@@ -63,6 +59,20 @@ const routes: Routes = [
     path: 'cadastro-dependente/:idUsuario',
     loadChildren: () => import('./pages/cadastro-dependente/cadastro-dependente.module').then(m => m.CadastroDependentePageModule)
   },
+  {
+    path: 'tela-login-dependente',
+    loadChildren: () => import('./pages/tela-login-dependente/tela-login-dependente.module').then( m => m.TelaLoginDependentePageModule)
+  },
+  {
+    path: 'remedios-dependente',
+    loadChildren: () => import('./pages/remedios-dependente/remedios-dependente.module').then( m => m.RemediosDependentePageModule)
+  },
+  {
+    path: 'remedios-dependente/:idUsuario',
+    loadChildren: () => import('./pages/remedios-dependente/remedios-dependente.module').then( m => m.RemediosDependentePageModule)
+  },
+
+
 ];
 
 @NgModule({

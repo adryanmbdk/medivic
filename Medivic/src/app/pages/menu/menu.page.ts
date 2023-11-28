@@ -5,12 +5,9 @@ import { RemedioService } from '../../services/remedio.service';
 import { Usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { HorarioService } from 'src/app/services/horario.service';
+import { ActivatedRoute } from '@angular/router';
 
 
-interface SideNavToggle {
-  screenWidth: number;
-  collapsed: boolean;
-}
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -21,12 +18,16 @@ export class MenuPage implements OnInit {
   dependentes: Usuario[];
   usuario: Usuario;
   numero: any;
+  id:number;
+  userLogged: boolean = true;
 
-  constructor(private usuarioService: UsuarioService, private horarioService: HorarioService, private toastController: ToastController, private navController: NavController, private remedioService: RemedioService) {
+  constructor(private usuarioService: UsuarioService,private activatedRoute: ActivatedRoute, private horarioService: HorarioService, private toastController: ToastController, private navController: NavController, private remedioService: RemedioService) {
     this.remedios = [];
     this.dependentes = [];
     this.usuario = this.usuarioService.getUser();
     this.numero = 0;
+    this.id = parseInt(this.activatedRoute.snapshot.params['idUsuario']);
+    this.checkUser();
     
   }
 
@@ -114,7 +115,12 @@ export class MenuPage implements OnInit {
     });
   }
 
-
+  async checkUser() {
+    console.log(this.usuario.isDependente)
+    if (this.usuario.isDependente == "y") {
+      this.userLogged = false;
+    }
+  }
 
   async exibirMensagem(texto: string) {
     const toast = await this.toastController.create({
