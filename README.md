@@ -32,6 +32,17 @@ Versão Inicial - [Documentação Sucinta do Sistema_PP-Adryan-Caldeira-2023 .do
 - **MySQL Workbench:**
   - Para instalar o MySQL Workbench, acesse o site: https://dev.mysql.com/downloads/workbench/
 - **Java:**
-  - Ter o Java instalado: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+  - Ter o Java 17 ou superior instalado: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 
+### Execute o XAMPP e dê start no "Apache" e no "MySQL".
+![image](https://github.com/adryanmbdk/medivic/assets/95255315/cb87be83-3671-45a4-8cc2-3900b0b51915)
+
+### Abra a pasta "Medivic" dentro da pasta "medivic" com o terminal. 
+![image](https://github.com/adryanmbdk/medivic/assets/95255315/ef0498f8-ac26-4864-8877-6bd654ced615)
+
+### Digite "ionic serve". Caso peça para baixar algum componente, baixe.
+![image](https://github.com/adryanmbdk/medivic/assets/95255315/8dcd94ae-4460-48ca-870c-448d378c3337)
+
+### Abra o arquivo "medivicbd.sql" com o MySQL Workbench e, primeiro, delete as três linhas que estão destacadas e então crie o banco de dados clicando no ícone de raio destacado na imagem. 
+![image](https://github.com/adryanmbdk/medivic/assets/95255315/6ca31734-959d-43f9-89f4-cddda697f29f)
 
