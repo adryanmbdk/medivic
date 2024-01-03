@@ -46,3 +46,12 @@ Versão Inicial - [Documentação Sucinta do Sistema_PP-Adryan-Caldeira-2023 .do
 ### Abra o arquivo "medivicbd.sql" com o MySQL Workbench e, primeiro, delete as três linhas que estão destacadas e então crie o banco de dados clicando no ícone de raio destacado na imagem. 
 ![image](https://github.com/adryanmbdk/medivic/assets/95255315/6ca31734-959d-43f9-89f4-cddda697f29f)
 
+### Por último, abra o arquivo "MedivicAPI" em algum compilador Java e execute o arquivo "MedivicApplication.java"
+![image](https://github.com/adryanmbdk/medivic/assets/95255315/bc07561a-6b35-46b3-89b6-0abe7521c1b3)
+
+### Caso todos os passos tenham sido seguidos corretamente, o programa irá rodar junto com a API.
+
+
+
+
+
